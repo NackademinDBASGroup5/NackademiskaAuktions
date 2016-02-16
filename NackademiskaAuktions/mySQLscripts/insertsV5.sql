@@ -68,4 +68,6 @@ INSERT INTO Auktionshistorik(auktion, kronor, produkt, kund, tid) VALUES (1000, 
 
 INSERT INTO Auktionshistorik(auktion, kronor, produkt, kund, tid) VALUES (2000, 500,2000,194503680748,'2014-11-01 15:36:00');
 INSERT INTO Auktionshistorik(auktion, kronor, produkt, kund, tid) VALUES (2000, 550,2000,198802080112,'2014-11-01 15:36:00');
-INSERT INTO Auktionshistorik(auktion, kronor, produkt, kund, tid) VALUES (3000, 8000,3000,196808190697,'2014-11-01 15:36:00');
+
+INSERT INTO Auktionshistorik(auktion, kronor, produkt, kund, tid) VALUES (3000, 7500,3000,198802080112,'2014-10-01 15:34:00');
+INSERT INTO Auktionshistorik(auktion, kronor, produkt, kund, tid) VALUES (3000, 8000,3000,196808190697,'2014-10-01 15:36:00');
