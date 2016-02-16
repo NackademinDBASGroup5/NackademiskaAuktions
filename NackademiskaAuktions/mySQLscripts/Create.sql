@@ -3,7 +3,7 @@ Create Database Auktion;
 use  auktion; 
 
 Create table Leverantör(
-OrgNummer int,
+OrgNummer varchar(25),
 Namn varchar(50) not null,
 provisionsprocent float,
 primary key (OrgNummer)
@@ -19,16 +19,15 @@ create index kategorityp on kategori(namn);
 
 create table produkt (
 id int auto_increment,
-leverantör int not null,
+leverantör varchar(25) not null,
+namn varchar(50) not null, 
 beskrivning Text,
 bild blob,
 registreringsDatum Date not null,
-såld boolean,
 primary key (id),
 foreign key (leverantör) references Leverantör(orgnummer)
 );
 create index produktleverantör on produkt(leverantör);
-create index produktkvar on produkt(såld);
 create index produktregistrering on produkt(registreringsdatum);
 
 create table produktKategori(
@@ -80,15 +79,29 @@ foreign key (kund) references kund(personnummer)
 );
 create index aktuellabud on bud(kronor);
 
-create table historik(
+create table produktHistorik (
+id int,
+leverantör varchar(25) not null,
+namn varchar(50) not null,
+beskrivning Text,
+bild blob,
+registreringsDatum Date not null,
+primary key (id),
+foreign key (leverantör) references Leverantör(orgnummer)
+);
+create index produktleverantör on produktHistorik(leverantör);
+create index produktregistrering on produktHistorik(registreringsdatum);
+
+create table auktionshistorik(
 auktion int not null,
 kronor int not null,
 produkt int,
 kund char(12),
 tid datetime,
 primary key (auktion, kronor),
-foreign key (produkt) references produkt(id),
+foreign key (produkt) references produktHistorik(id),
 foreign key (kund)  references kund(personnummer)
 );
-create index kundhistorik on historik(kund);
-create index penghistorik on historik(kronor);
+create index kundhistorik on auktionshistorik(kund);
+create index penghistorik on auktionshistorik(kronor);
+
