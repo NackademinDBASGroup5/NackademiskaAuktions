@@ -23,12 +23,10 @@ leverantör int not null,
 beskrivning Text,
 bild blob,
 registreringsDatum Date not null,
-såld boolean,
 primary key (id),
 foreign key (leverantör) references Leverantör(orgnummer)
 );
 create index produktleverantör on produkt(leverantör);
-create index produktkvar on produkt(såld);
 create index produktregistrering on produkt(registreringsdatum);
 
 create table produktKategori(
@@ -80,7 +78,7 @@ foreign key (kund) references kund(personnummer)
 );
 create index aktuellabud on bud(kronor);
 
-create table historik(
+create table auktionshistorik(
 auktion int not null,
 kronor int not null,
 produkt int,
@@ -90,5 +88,17 @@ primary key (auktion, kronor),
 foreign key (produkt) references produkt(id),
 foreign key (kund)  references kund(personnummer)
 );
-create index kundhistorik on historik(kund);
-create index penghistorik on historik(kronor);
+create index kundhistorik on auktionshistorik(kund);
+create index penghistorik on auktionshistorik(kronor);
+
+create table produktHistorik (
+id int,
+leverantör int not null,
+beskrivning Text,
+bild blob,
+registreringsDatum Date not null,
+primary key (id),
+foreign key (leverantör) references Leverantör(orgnummer)
+);
+create index produktleverantör on produktHistorik(leverantör);
+create index produktregistrering on produktHistorik(registreringsdatum);
