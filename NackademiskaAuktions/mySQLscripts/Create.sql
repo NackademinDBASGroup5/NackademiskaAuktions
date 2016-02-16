@@ -79,19 +79,6 @@ foreign key (kund) references kund(personnummer)
 );
 create index aktuellabud on bud(kronor);
 
-create table auktionshistorik(
-auktion int not null,
-kronor int not null,
-produkt int,
-kund char(12),
-tid datetime,
-primary key (auktion, kronor),
-foreign key (produkt) references produkt(id),
-foreign key (kund)  references kund(personnummer)
-);
-create index kundhistorik on auktionshistorik(kund);
-create index penghistorik on auktionshistorik(kronor);
-
 create table produktHistorik (
 id int,
 leverantör int not null,
@@ -103,3 +90,17 @@ foreign key (leverantör) references Leverantör(orgnummer)
 );
 create index produktleverantör on produktHistorik(leverantör);
 create index produktregistrering on produktHistorik(registreringsdatum);
+
+create table auktionshistorik(
+auktion int not null,
+kronor int not null,
+produkt int,
+kund char(12),
+tid datetime,
+primary key (auktion, kronor),
+foreign key (produkt) references produktHistorik(id),
+foreign key (kund)  references kund(personnummer)
+);
+create index kundhistorik on auktionshistorik(kund);
+create index penghistorik on auktionshistorik(kronor);
+
