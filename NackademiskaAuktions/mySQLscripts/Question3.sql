@@ -8,3 +8,5 @@ INNER JOIN auktion ON Bud.Auktion = Auktion.auktionsnummer
 INNER JOIN Kund ON Bud.kund = Kund.Personnummer
 INNER JOIN Produkt ON Auktion.produkt = Produkt.id
 GROUP BY auktion.auktionsnummer;
+
+SELECT * FROM AktuellaAuktioner;
