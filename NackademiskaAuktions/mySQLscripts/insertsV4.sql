@@ -58,8 +58,14 @@ INSERT INTO bud (Auktion, Kronor, kund, tid) VALUES(3,25,194503680748, '2015-02-
 INSERT INTO bud (Auktion, Kronor, kund, tid) VALUES(5,2,196808190697, '2015-02-17 22:30:50');
 
 INSERT INTO Produkthistorik(id, Leverantör, namn, beskrivning, bild, registreringsDatum) VALUES (1000, 1198620963, 'Nattlinne', 'Gertruds gammla nattlinne', null, '2014-10-12');
+INSERT INTO Produkthistorik(id, Leverantör, namn, beskrivning, bild, registreringsDatum) VALUES (2000, 8639782087, 'Hammare', 'En hammare', null, '2014-10-15');
+INSERT INTO Produkthistorik(id, Leverantör, namn, beskrivning, bild, registreringsDatum) VALUES (3000, 1198620963, 'Dator', 'En antik dator', null, '2014-10-20');
 
 INSERT INTO Auktionshistorik(auktion, kronor, produkt, kund, tid) VALUES (1000, 500,1000,196808190697,'2014-11-01 15:30:00');
 INSERT INTO Auktionshistorik(auktion, kronor, produkt, kund, tid) VALUES (1000, 1000,1000,194503680748,'2014-11-01 15:34:33');
 INSERT INTO Auktionshistorik(auktion, kronor, produkt, kund, tid) VALUES (1000, 2000,1000,196808190697,'2014-11-01 15:35:20');
 INSERT INTO Auktionshistorik(auktion, kronor, produkt, kund, tid) VALUES (1000, 10000,1000,198802080112,'2014-11-01 15:36:00');
+
+INSERT INTO Auktionshistorik(auktion, kronor, produkt, kund, tid) VALUES (2000, 500,2000,194503680748,'2014-11-01 15:36:00');
+INSERT INTO Auktionshistorik(auktion, kronor, produkt, kund, tid) VALUES (2000, 550,2000,198802080112,'2014-11-01 15:36:00');
+INSERT INTO Auktionshistorik(auktion, kronor, produkt, kund, tid) VALUES (3000, 8000,3000,196808190697,'2014-11-01 15:36:00');
