@@ -20,6 +20,7 @@ create index kategorityp on kategori(namn);
 create table produkt (
 id int auto_increment,
 leverantör int not null,
+namn varchar(50) not null, 
 beskrivning Text,
 bild blob,
 registreringsDatum Date not null,
