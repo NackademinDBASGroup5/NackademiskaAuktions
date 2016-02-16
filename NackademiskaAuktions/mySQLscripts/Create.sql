@@ -82,7 +82,7 @@ create index aktuellabud on bud(kronor);
 create table produktHistorik (
 id int,
 leverantör varchar(25) not null,
-namn varchar(25) not null,
+namn varchar(50) not null,
 beskrivning Text,
 bild blob,
 registreringsDatum Date not null,
