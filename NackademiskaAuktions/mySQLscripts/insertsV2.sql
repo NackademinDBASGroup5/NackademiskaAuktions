@@ -1,3 +1,4 @@
+USE auktion;
 INSERT INTO Leverantör (OrgNummer, Namn, provisionsprocent) VALUES (1198620963, 'Gertrud Larssons dödsbo', 25.6); 
 INSERT INTO Leverantör (OrgNummer, Namn, provisionsprocent) VALUES (8639782087, 'Sumpans korp-pingislag', 15.9); 
 INSERT INTO Leverantör (OrgNummer, Namn, provisionsprocent) VALUES (2693787896, 'Solna kommun', 35.6); 
@@ -39,9 +40,9 @@ INSERT INTO auktion (Produkt, utropspris, Acceptpris, Starttid, sluttid) VALUES 
 INSERT INTO auktion (Produkt, utropspris, Acceptpris, Starttid, sluttid) VALUES (4,150, 999, now(), '2015-02-21 21:00:00');
 INSERT INTO auktion (Produkt, utropspris, Acceptpris, Starttid, sluttid) VALUES (5,1, 25, now(), '2015-02-21 21:00:00');
 
-INSERT INTO kund(personnummer, förnamn, Efternamn, gatuadress, ort, epost, telefon) VALUES (198802080112, 'Robin', 'Simonsson', 'Redskapsvägen 34', '16243', 'robin.sjolund@gmail.com', '0730832244');
-INSERT INTO kund(personnummer, förnamn, Efternamn, gatuadress, ort, epost, telefon) VALUES (194503680748, 'Thobbe', 'Patriksson', 'Gatan 80', '19687', 'hejochhå@gmail.com', '0789632541');
-INSERT INTO kund(personnummer, förnamn, Efternamn, gatuadress, ort, epost, telefon) VALUES (196808190697, 'Anton', 'Oscarsson', 'Vägen 18', '18759', 'greger@gmail.com', '074235689');
+INSERT INTO kund(personnummer, förnamn, Efternamn, gatuadress, postnummer, ort, epost, telefon) VALUES (198802080112, 'Robin', 'Simonsson', 'Redskapsvägen 34', '16243','Vällingby' ,'robin.sjolund@gmail.com', '0730832244');
+INSERT INTO kund(personnummer, förnamn, Efternamn, gatuadress, postnummer, ort, epost, telefon) VALUES (194503680748, 'Thobbe', 'Patriksson', 'Gatan 80', '19687', 'Härjedalen', 'hejochhå@gmail.com', '0789632541');
+INSERT INTO kund(personnummer, förnamn, Efternamn, gatuadress, postnummer, ort, epost, telefon) VALUES (196808190697, 'Anton', 'Oscarsson', 'Vägen 18', '18759','Mumindalen', 'greger@gmail.com', '074235689');
 
 INSERT INTO bud (Auktion, Kronor, kund, tid) VALUES(1,1500,1, '2015-02-17 21:25:04');
 INSERT INTO bud (Auktion, Kronor, kund, tid) VALUES(1,1501,2,'2015-02-17 21:25:30');
