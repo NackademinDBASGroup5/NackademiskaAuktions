@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AuctionC">
+  <tabs>
+    <Tab text="Pågående">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <DatePicker fx:id="fromDatePicker_curr" layoutX="13.0" layoutY="88.0" prefHeight="25.0" prefWidth="113.0" />
+                  <DatePicker fx:id="toDatePicker_curr" layoutX="14.0" layoutY="136.0" prefHeight="25.0" prefWidth="113.0" />
+                  <Button fx:id="listButton_curr" layoutX="50.0" layoutY="173.0" mnemonicParsing="false" text="Lista" />
+                  <Button fx:id="listAllButton_curr" layoutX="44.0" layoutY="255.0" mnemonicParsing="false" text="Lista alla" />
+                  <Separator layoutX="6.0" layoutY="210.0" prefHeight="0.0" prefWidth="119.0" />
+                  <Text layoutX="14.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Från:" />
+                  <Text layoutX="18.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Till:" />
+                  <Text layoutX="27.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Avslutningsdatum" />
+                  <Text layoutX="9.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista auktioner">
+                     <font>
+                        <Font name="System Bold Italic" size="23.0" />
+                     </font>
+                  </Text>
+                  <TableView fx:id="tableView_curr" layoutX="137.0" layoutY="36.0" prefHeight="318.0" prefWidth="451.0" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Avslutade">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Text layoutX="9.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista auktioner">
+                     <font>
+                        <Font name="System Bold Italic" size="23.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="27.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Avslutningsdatum" />
+                  <Text layoutX="14.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Från:" />
+                  <Text layoutX="18.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Till:" />
+                  <DatePicker fx:id="toDatePicker_hist" layoutX="14.0" layoutY="136.0" prefHeight="25.0" prefWidth="113.0" />
+                  <DatePicker fx:id="fromDatePicker_hist" layoutX="13.0" layoutY="88.0" prefHeight="25.0" prefWidth="113.0" />
+                  <Button fx:id="listButton_hist" layoutX="50.0" layoutY="173.0" mnemonicParsing="false" text="Lista" />
+                  <Button fx:id="listAllButton_hist" layoutX="44.0" layoutY="255.0" mnemonicParsing="false" text="Lista alla" />
+                  <Separator layoutX="6.0" layoutY="210.0" prefWidth="119.0" />
+                  <TableView fx:id="tableView_hist" layoutX="144.0" layoutY="49.0" prefHeight="300.0" prefWidth="444.0" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

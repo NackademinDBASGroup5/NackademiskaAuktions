@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReportC">
+   <children>
+      <Button fx:id="customerReportButton" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Kunder som handlat" wrapText="true">
+         <font>
+            <Font size="11.0" />
+         </font>
+         <tooltip>
+            <Tooltip text="Lista alla kunder som har handlat och hur mycket varje kund har handlat för" />
+         </tooltip>
+      </Button>
+      <Button fx:id="provisionPerMonthButton" layoutX="14.0" layoutY="65.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Provision per månad">
+         <tooltip>
+            <Tooltip text="Lista provisionen för alla månader som har auktioner" />
+         </tooltip>
+      </Button>
+      <Text layoutX="19.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Välj rapport:">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tableView" layoutX="156.0" layoutY="32.0" prefHeight="351.0" prefWidth="431.0" />
+      <Button fx:id="backButton" layoutX="14.0" layoutY="358.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="&lt; Tillbaka" />
+   </children>
+</AnchorPane>
