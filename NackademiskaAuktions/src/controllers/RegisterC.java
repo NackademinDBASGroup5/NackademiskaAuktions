@@ -44,16 +44,12 @@ public class RegisterC implements Initializable {
 			String success = "Ny kund registrerad";
 			String fail = "något gick fel, eller kunden finns redan";
 			if (registered){
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setHeaderText(success);
-				alert.showAndWait();
+				warningMessage(success);
 			}else{
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setHeaderText(fail);
-				alert.showAndWait();
+				warningMessage(fail);
 			}
 		});
-		provPercentField.addEventFilter(KeyEvent.KEY_TYPED , numeric_Validation(10));
+		provPercentField.addEventFilter(KeyEvent.KEY_TYPED , numericValidation(5));
 		
 		registerButton_supplier.setOnAction(e->{
 			Leverantor lev = new Leverantor(orgNumberField.getText(), supplierNameField.getText(), Float.parseFloat(provPercentField.getText()));
@@ -61,17 +57,13 @@ public class RegisterC implements Initializable {
 			String success = "Ny Leverantör registrerad";
 			String fail = "något gick fel, eller Leverantören finns redan";
 			if (registered){
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setHeaderText(success);
-				alert.showAndWait();
+				warningMessage(success);
 			}else{
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setHeaderText(fail);
-				alert.showAndWait();
+				warningMessage(fail);
 			}
 		});
 	}
-	public EventHandler<KeyEvent> numeric_Validation(final Integer max_Lengh) {
+	public EventHandler<KeyEvent> numericValidation(final Integer max_Lengh) {
 	    return new EventHandler<KeyEvent>() {
 	        @Override
 	        public void handle(KeyEvent e) {
@@ -90,6 +82,11 @@ public class RegisterC implements Initializable {
 	            }
 	        }
 	    };
-	}    
+	}   
+	private void warningMessage(String s){
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText(s);
+		alert.showAndWait();
+	}
 
 }
