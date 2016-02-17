@@ -1,5 +1,5 @@
 
-
+-- fråga 7 + avslutad auktion utan bud till historik, produkt kvar
 -- listar alla auktioner utan bud, having pekar på specifikt auktionsnummer
 SELECT DISTINCT auktionsnummer, produkt, utropspris, acceptPris, starttid,sluttid FROM auktion
 WHERE NOT EXISTS(SELECT * FROM Bud WHERE auktion = auktion.auktionsnummer)
@@ -8,7 +8,6 @@ HAVING auktionsnummer=4;
 -- drop table auktionshistorik;
 
 -- drop trigger auktiontasbort;
-
 
 /* Trigger som bestämmer vad som händer när en auktion tas bort. Om auktionen inte har något bud ligger produkten kvar och auktionen lagras
 i historiken med null-värde på kund, bud och budtid. Om auktionen HAR bud så lagras alla buden i historiken samt att auktionen tas bort    */
