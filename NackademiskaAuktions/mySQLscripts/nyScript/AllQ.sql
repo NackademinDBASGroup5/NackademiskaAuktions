@@ -1,3 +1,105 @@
+--  1
+
+DELIMITER //
+CREATE PROCEDURE registreraProdukt(IN leverantor int,in namn varchar(50), IN beskrivning Text, IN bild blob, IN registreringsdatum Date)
+BEGIN
+
+INSERT INTO produkt (leverantör,namn, beskrivning,bild,registreringsDatum) VALUES (leverantor, namn, beskrivning,bild,registreringsdatum);
+
+END //
+DELIMITER ;
+select * from produkt;
+
+-- 2
+delimiter //
+create procedure startAuktion (in produktin int, in utropsprisin int, in acceptprisin int, in starttidin datetime, in sluttidin datetime) 
+
+begin 
+if  acceptprisin is not null then
+insert into auktion(produkt, utropspris, acceptpris, starttid, sluttid)
+values (produktin, utropsprisin, acceptprisin, starttidin, sluttidin);
+else 
+insert into auktion(produkt, utropspris, starttid, sluttid)
+values (produktin, utropsprisin, starttidin, sluttidin);
+end if;
+end//
+
+delimiter ;
+
+-- 3
+CREATE VIEW AktuellaAuktioner AS
+SELECT auktion.auktionsnummer AS Auktion, produkt.namn AS Produkt, MAX(KRONOR) AS 'Högsta Bud', CONCAT(Kund.Förnamn, " ", Kund.Efternamn) AS Kund
+FROM Bud
+INNER JOIN auktion ON Bud.Auktion = Auktion.auktionsnummer
+INNER JOIN Kund ON Bud.kund = Kund.Personnummer
+INNER JOIN Produkt ON Auktion.produkt = Produkt.id
+GROUP BY auktion.auktionsnummer;
+
+SELECT * FROM AktuellaAuktioner;
+-- 4
+CREATE VIEW GamlaBud AS 
+SELECT auktionshistorik.auktionsnummer, Kronor, kund,CONCAT(kund.förnamn,' ',kund.efternamn) AS 'Namn' , tid FROM auktionshistorik
+INNER JOIN Kund ON kund.personnummer=auktionshistorik.kund
+ORDER BY kronor ASC;
+select * from gamlabud;
+select * from auktionshistorik;
+
+-- INSERT INTO bud (Auktion, Kronor, kund, tid) VALUES(3,61000,196808190697, '2015-02-18 22:30:50');
+-- select * from auktionshistorik;
+-- 4
+CREATE VIEW AktivaBud AS
+SELECT produkt.namn as 'Vara', bud.auktion, bud.kronor, kund,CONCAT(kund.förnamn,' ',kund.efternamn) AS 'Namn' , tid from bud
+INNER JOIN Kund ON kund.personnummer=bud.kund
+inner join auktion on auktion.auktionsnummer = bud.auktion
+inner join produkt on produkt.id = auktion.produkt 
+ORDER BY kronor ASC;
+
+select * from aktivabud;
+
+
+-- 5
+DELIMITER //
+CREATE PROCEDURE datumintervall(IN start date, IN slut datetime)
+BEGIN
+SELECT Produkt, produkt.namn,max(bud.kronor)*(leverantör.provisionsprocent/100) AS 'Provision', sluttid FROM auktion
+INNER JOIN Produkt ON produkt.id=produkt
+INNER JOIN Leverantör ON leverantör.orgnummer=produkt.leverantör
+INNER JOIN Bud ON auktion.auktionsnummer=bud.auktion
+WHERE  auktion.sluttid>=start AND auktion.sluttid<=slut
+GROUP BY produkt ;
+END //
+DELIMITER ;
+
+
+select * from produkt;
+call startAuktion(9, 10, null, now(), '2016-02-17 13:50:00');
+-- drop procedure datumintervall;
+call datumintervall('2015-02-17', '2015-02-21 21:00:00');
+
+-- 6
+select * from auktion;
+select * from auktionshistorik;
+
+SET GLOBAL event_scheduler = ON;
+SHOW PROCESSLIST;
+
+DROP EVENT IF EXISTS `auktion_slut`; 
+
+DELIMITER $$
+
+CREATE 
+	EVENT IF NOT EXISTS auktion_slut  
+	ON SCHEDULE EVERY 1 MINUTE STARTS now()
+	
+	DO BEGIN
+        
+        DELETE FROM auktion
+        WHERE auktion.sluttid <= now();
+        
+	END $$
+
+DELIMITER ;
+
 
 -- fråga 7 + avslutad auktion utan bud till historik, produkt kvar
 -- listar alla auktioner utan bud, having pekar på specifikt auktionsnummer
@@ -58,3 +160,36 @@ delete from auktion where new.auktion = auktion.auktionsnummer and new.kronor >=
 end// 
 
 delimiter ;
+
+
+-- 8
+CREATE VIEW VunnaAuktioner AS 
+SELECT auktionsnummer, kronor as VinnandeBud, CONCAT(kund.förnamn, ' ', kund.efternamn) as vinnare FROM auktionshistorik 
+inner join kund on kund.personnummer = auktionshistorik.kund
+WHERE (auktionsnummer, kronor) IN 
+( SELECT auktionsnummer, MAX(kronor)
+  FROM auktionshistorik
+  GROUP BY auktionsnummer
+) order by auktionsnummer;
+
+-- lista summan på vad som varje vinnare totalt ska pröjsa
+SELECT SUM(vinnandebud), vinnare from VunnaAuktioner
+GROUP BY Vinnare;
+
+
+-- 9
+CREATE VIEW Provision AS
+SELECT auktionsnummer, max(bud.kronor)*(leverantör.provisionsprocent/100) AS 'Provision', sluttid FROM auktion
+INNER JOIN Produkt ON produkt.id=produkt
+INNER JOIN Leverantör ON leverantör.orgnummer=produkt.leverantör
+INNER JOIN Bud ON auktionsnummer=bud.auktion
+GROUP BY auktionsnummer
+UNION ALL
+SELECT auktionsnummer,max(kronor)*(leverantör.provisionsprocent/100) AS 'Provision', tid FROM auktionshistorik
+
+INNER JOIN Leverantör ON auktionshistorik.leverantör=leverantör.OrgNummer
+GROUP BY auktionshistorik.auktionsnummer;
+
+select * from provision WHERE month(sluttid) = 2;
+
+SELECT date_format(sluttid,'%b %Y') AS 'Månad', ROUND(sum(provision),2) AS 'Provision' FROM provision group by month(sluttid);
