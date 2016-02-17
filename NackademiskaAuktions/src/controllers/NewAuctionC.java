@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Leverantor;
+import application.Main;
 import application.Produkt;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,7 +37,10 @@ public class NewAuctionC implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		
+		cancelButton.setOnAction(e->{
+			Main.mainStage.setScene(Main.mainScene);
+		});
 		
 	}
 

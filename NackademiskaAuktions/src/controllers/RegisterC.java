@@ -3,6 +3,7 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -20,8 +21,14 @@ public class RegisterC implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+	
+		backButton_customer.setOnAction(e->{
+			Main.mainStage.setScene(Main.mainScene);
+		});
 		
+		backButton_supplier.setOnAction(e->{
+			Main.mainStage.setScene(Main.mainScene);
+		});
 	}
 
 }

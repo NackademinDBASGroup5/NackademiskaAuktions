@@ -3,6 +3,7 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,13 +16,22 @@ public class AuctionC implements Initializable {
 	DatePicker fromDatePicker_curr, toDatePicker_curr,fromDatePicker_hist, toDatePicker_hist;
 
 	@FXML
-	Button listButton_curr, listAllButton_curr, listButton_hist, listAllButton_hist;
+	Button listButton_curr, listAllButton_curr, listButton_hist, listAllButton_hist, backButton_curr, backButton_hist;
 	
 	@FXML
 	TableView<String> tableView_curr, tableView_hist;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		
+		
+		
+		backButton_curr.setOnAction(e->{
+			Main.mainStage.setScene(Main.mainScene);
+		});
+		
+		backButton_hist.setOnAction(e->{
+			Main.mainStage.setScene(Main.mainScene);
+		});
 		
 	}
 
