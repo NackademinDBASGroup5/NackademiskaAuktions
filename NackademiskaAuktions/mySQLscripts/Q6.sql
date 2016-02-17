@@ -7,9 +7,7 @@ DROP EVENT IF EXISTS `auktion_slut`;
 
 DELIMITER $$
 
-CREATE 
-	EVENT IF NOT EXISTS auktion_slut  
-	ON SCHEDULE EVERY 1 second STARTS now()
+CREATE EVENT IF NOT EXISTS auktion_slut ON SCHEDULE EVERY 1 second STARTS now()
 	
 	DO BEGIN
 	    
