@@ -2,14 +2,41 @@ package application;
 
 public class Leverantor {
 
-	int orgnummer;
+	String orgnummer;
 	String namn;
 	float provisionsprocent;
 	
-	public Leverantor(int orgnummer, String namn, float provisionsprocent) {
+	public Leverantor(String orgnummer, String namn, float provisionsprocent) {
 		super();
 		this.orgnummer = orgnummer;
 		this.namn = namn;
 		this.provisionsprocent = provisionsprocent;
 	}
+
+	public String getOrgnummer() {
+		return orgnummer;
+	}
+
+	public void setOrgnummer(String orgnummer) {
+		this.orgnummer = orgnummer;
+	}
+
+	public String getNamn() {
+		return namn;
+	}
+
+	public void setNamn(String namn) {
+		this.namn = namn;
+	}
+
+	public float getProvisionsprocent() {
+		return provisionsprocent;
+	}
+
+	public void setProvisionsprocent(float provisionsprocent) {
+		this.provisionsprocent = provisionsprocent;
+	}
+	
+	
+	
 }
