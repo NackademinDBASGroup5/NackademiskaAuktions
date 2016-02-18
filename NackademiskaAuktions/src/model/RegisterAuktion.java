@@ -90,9 +90,7 @@ public class RegisterAuktion {
 		System.out.println(endTime);
 		try {
 			connect.setAutoCommit(false);
-			PreparedStatement prepstm = connect.prepareStatement("INSERT INTO auktion("
-					+ "Produkt, utropspris, Acceptpris, Starttid, sluttid)"
-					+ " Values (?, ?, ?, ?, ?)");
+			PreparedStatement prepstm = connect.prepareStatement("call startAuktion (?, ?, ?, ?, ?)");
 			prepstm.setInt(1, selectedItem.getId());
 			prepstm.setInt(2, utropspris);
 			prepstm.setInt(3, acceptpris);
