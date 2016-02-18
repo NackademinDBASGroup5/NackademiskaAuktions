@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -83,16 +85,35 @@ public class RegisterAuktion {
 	}
 
 	public boolean registerToDatabase(Produkt selectedItem, int utropspris, int acceptpris, String localDate,
-			String localDate2, String endTime) {
+			String localDate2, String startTime, String endTime) {
 		String currTime = new SimpleDateFormat("HH:mm:ss").format(new Date());
+		String currDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 		endTime = endTime+":00:00";
+		startTime = startTime+":00:00";
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date d1 = new Date();
+		Date d2 = new Date();
+		Date d3 = new Date();
+		try {
+			d1 = format.parse(localDate +" "+ startTime);
+			d2 = format.parse(localDate2 +" "+ currTime);
+			d3 = format.parse(currDate);
+			
+			System.out.println(d1 + " " + d2);
+		} catch (ParseException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		try {
 			connect.setAutoCommit(false);
 			PreparedStatement prepstm = connect.prepareStatement("call startAuktion (?, ?, ?, ?, ?)");
 			prepstm.setInt(1, selectedItem.getId());
 			prepstm.setInt(2, utropspris);
 			prepstm.setInt(3, acceptpris);
-			prepstm.setString(4, localDate+" "+currTime);
+			if (d1.compareTo(d2) <0 && d1.compareTo(d3) <1)
+			prepstm.setString(4, currDate);
+			else 
+				prepstm.setString(4, localDate+" "+startTime);
 			prepstm.setString(5, localDate2 +" "+endTime);
 			
 			int a = prepstm.executeUpdate();

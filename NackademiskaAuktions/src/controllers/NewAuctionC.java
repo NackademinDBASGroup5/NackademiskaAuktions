@@ -49,6 +49,7 @@ public class NewAuctionC implements Initializable {
 		ObservableList<String> hourOptions = FXCollections.observableArrayList("00", "01", "02", "03", "04", "05", "06",
 				"07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23");
 		endTimeCombo.setItems(hourOptions);
+		startTimeCombo.setItems(hourOptions);
 		ObservableList<Leverantor> levOptions = FXCollections.observableArrayList(regA.getLeverantorer());
 		supplierCombo.setItems(levOptions);
 
@@ -65,7 +66,7 @@ public class NewAuctionC implements Initializable {
 				boolean register = regA.registerToDatabase(productCombo.getSelectionModel().getSelectedItem(),
 						Integer.parseInt(startPriceField.getText()), Integer.parseInt(acceptPriceField.getText()),
 						fromDatePicker.getValue().toString(), toDatePicker.getValue().toString(),
-						endTimeCombo.getSelectionModel().getSelectedItem());
+						startTimeCombo.getSelectionModel().getSelectedItem(), endTimeCombo.getSelectionModel().getSelectedItem());
 				String success = "Ny Auktion registrerad";
 				String fail = "något gick fel, eller auktionen finns redan";
 				if (register) {
