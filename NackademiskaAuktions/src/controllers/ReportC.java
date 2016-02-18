@@ -7,6 +7,7 @@ import application.Auktion;
 import application.Historik;
 import application.Kund;
 import application.Main;
+import application.Provision;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,7 +25,7 @@ public class ReportC implements Initializable {
 	Button customerReportButton, provisionPerMonthButton, backButton;
 	
 	@FXML
-	TableView<Kund> tableView;
+	TableView tableView;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -47,8 +48,12 @@ public class ReportC implements Initializable {
 		TableColumn<Kund, String> eightCol = new TableColumn<Kund, String>("Telefon");
 		eightCol.setCellValueFactory(new PropertyValueFactory<Kund, String>("telefon"));
 		
-		Reports rep = new Reports();
+		TableColumn<Provision, String> provisionCol = new TableColumn<Provision, String>("Månad");
+		provisionCol.setCellValueFactory(new PropertyValueFactory<Provision, String>("manad"));
+		TableColumn<Provision, String> provisionCol2 = new TableColumn<Provision, String>("Provision");
+		provisionCol2.setCellValueFactory(new PropertyValueFactory<Provision, String>("provision"));
 		
+		Reports rep = new Reports();
 		
 		backButton.setOnAction(e->{
 			Main.mainStage.setScene(Main.mainScene);
@@ -59,12 +64,22 @@ public class ReportC implements Initializable {
 			Platform.runLater(()->{
 				ObservableList<Kund> data = FXCollections.observableArrayList(rep.getCustomerReport());
 				tableView.refresh();
-				for (Kund kund : data) {
-					System.out.println(kund);
-				}
 
 				tableView.setItems(data);
 				tableView.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol, fifthCol, sixthCol, seventhCol, eightCol );
+			});
+		
+		});
+		
+		provisionPerMonthButton.setOnAction(e->{
+			tableView.getColumns().clear();
+			tableView.getItems().clear();
+			Platform.runLater(()->{
+				ObservableList<Provision> data = FXCollections.observableArrayList(rep.getProvisionReport());
+				tableView.refresh();
+
+				tableView.setItems(data);
+				tableView.getColumns().addAll(provisionCol, provisionCol2);
 			});
 		
 		});
