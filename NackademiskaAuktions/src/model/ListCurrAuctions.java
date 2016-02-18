@@ -34,7 +34,7 @@ public class ListCurrAuctions {
 	}
 	
 	
-	public ResultSet getAuctions(String from, String to){
+	public ResultSet getAuctionsIntervall(String from, String to){
 		
 		
 		try {
@@ -63,5 +63,8 @@ public class ListCurrAuctions {
 		return rs;
 	
 	}
+	
+	
+	
 
 }
