@@ -71,7 +71,7 @@ public class RegisterC implements Initializable {
 		provPercentField.addEventFilter(KeyEvent.KEY_TYPED , numericValidation(5));
 		// check if field not null or empty
 		registerButton_supplier.setOnAction(e->{
-			Leverantor lev = new Leverantor(orgNumberField.getText(), productNameField.getText(), Float.parseFloat(provPercentField.getText()));
+			Leverantor lev = new Leverantor(orgNumberField.getText(), supplierNameField.getText(), Float.parseFloat(provPercentField.getText()));
 			boolean registered = rKund.registerLeverantorToDatabase(lev);
 			String success = "Ny Leverantör registrerad";
 			String fail = "något gick fel, eller Leverantören finns redan";

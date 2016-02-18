@@ -17,49 +17,48 @@ public class MainMenuC implements Initializable {
 
 	@FXML
 	Button registerButton, addAuctionButton, auctionListButton, quitButton, reportButton;
-	
+	//Scene register = loadScene("Register.fxml");
+	//Scene auctions = loadScene("Auction.fxml");
+	//Scene createAuction = loadScene("NewAuction.fxml");
+	//Scene reports = loadScene("Report.fxml");
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		Scene register = loadScene("Register.fxml");
-		Scene auctions = loadScene("Auction.fxml");
-		Scene createAuction = loadScene("NewAuction.fxml");
-		Scene reports = loadScene("Report.fxml");
-		
-		registerButton.setOnAction(e->{
-	    Main.mainStage.setScene(register);
+
+		registerButton.setOnAction(e -> {
+			Main.mainStage.setScene(loadScene("Register.fxml"));
 		});
-		
-		addAuctionButton.setOnAction(e->{
-			Main.mainStage.setScene(createAuction);
+
+		addAuctionButton.setOnAction(e -> {
+			Main.mainStage.setScene(loadScene("NewAuction.fxml"));
 		});
-		
-		auctionListButton.setOnAction(e->{
-			Main.mainStage.setScene(auctions);
+
+		auctionListButton.setOnAction(e -> {
+			Main.mainStage.setScene(loadScene("Auction.fxml"));
 		});
-		
-		reportButton.setOnAction(e->{
-			Main.mainStage.setScene(reports);
+
+		reportButton.setOnAction(e -> {
+			Main.mainStage.setScene(loadScene("Report.fxml"));
 		});
-		
-		quitButton.setOnAction(e->{
+
+		quitButton.setOnAction(e -> {
 			Platform.exit();
 		});
-		
-	}
-	
 
-	private Scene loadScene(String fileName){
-		URL location = this.getClass().getResource("/view/"+fileName);
+	}
+
+	private Scene loadScene(String fileName) {
+		URL location = this.getClass().getResource("/view/" + fileName);
 		FXMLLoader loader = new FXMLLoader(location);
 		try {
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
 			return scene;
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 }

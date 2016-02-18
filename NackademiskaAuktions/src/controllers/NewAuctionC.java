@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import application.Leverantor;
 import application.Main;
 import application.Produkt;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -46,13 +47,15 @@ public class NewAuctionC implements Initializable {
 		acceptPriceField.addEventFilter(KeyEvent.KEY_TYPED, numericValidation(10));
 
 		RegisterAuktion regA = new RegisterAuktion();
+		
 		ObservableList<String> hourOptions = FXCollections.observableArrayList("00", "01", "02", "03", "04", "05", "06",
 				"07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23");
 		endTimeCombo.setItems(hourOptions);
 		startTimeCombo.setItems(hourOptions);
 		ObservableList<Leverantor> levOptions = FXCollections.observableArrayList(regA.getLeverantorer());
-		supplierCombo.setItems(levOptions);
-
+		supplierCombo.setItems(levOptions);	
+		
+		
 		supplierCombo.setOnAction(e -> {
 			ObservableList<Produkt> prodOptions = FXCollections.observableArrayList(
 					regA.getLeverantorProdukt(supplierCombo.getSelectionModel().getSelectedItem()));
@@ -71,6 +74,13 @@ public class NewAuctionC implements Initializable {
 				String fail = "något gick fel, eller auktionen finns redan";
 				if (register) {
 					warningMessage(success);
+					// kolla upp
+					Platform.runLater(()->{
+						ObservableList<Produkt> prodOptions = FXCollections.observableArrayList(
+								regA.getLeverantorProdukt(supplierCombo.getSelectionModel().getSelectedItem()));
+						productCombo.setItems(prodOptions);
+						productCombo.setDisable(true);
+					});
 				} else {
 					warningMessage(fail);
 				}
