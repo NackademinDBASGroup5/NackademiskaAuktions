@@ -53,8 +53,9 @@ public class NewAuctionC implements Initializable {
 		endTimeCombo.setItems(hourOptions);
 		startTimeCombo.setItems(hourOptions);
 		ObservableList<Leverantor> levOptions = FXCollections.observableArrayList(regA.getLeverantorer());
-		supplierCombo.setItems(levOptions);
-
+		supplierCombo.setItems(levOptions);	
+		
+		
 		supplierCombo.setOnAction(e -> {
 			ObservableList<Produkt> prodOptions = FXCollections.observableArrayList(
 					regA.getLeverantorProdukt(supplierCombo.getSelectionModel().getSelectedItem()));
