@@ -6,7 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
+
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import application.Leverantor;
 import application.Produkt;
@@ -75,6 +80,51 @@ public class RegisterAuktion {
 
 		}
 		return null;
+	}
+
+	public boolean registerToDatabase(Produkt selectedItem, int utropspris, int acceptpris, String localDate,
+			String localDate2, String endTime) {
+		String currTime = new SimpleDateFormat("HH:mm:ss").format(new Date());
+		System.out.println(endTime);
+		endTime = endTime+":00:00";
+		System.out.println(endTime);
+		try {
+			connect.setAutoCommit(false);
+			PreparedStatement prepstm = connect.prepareStatement("INSERT INTO auktion("
+					+ "Produkt, utropspris, Acceptpris, Starttid, sluttid)"
+					+ " Values (?, ?, ?, ?, ?)");
+			prepstm.setInt(1, selectedItem.getId());
+			prepstm.setInt(2, utropspris);
+			prepstm.setInt(3, acceptpris);
+			prepstm.setString(4, localDate+" "+currTime);
+			prepstm.setString(5, localDate2 +" "+endTime);
+			
+			int a = prepstm.executeUpdate();
+			if (a == 1) {
+				connect.commit();
+				return true;
+			}
+		} catch (MySQLIntegrityConstraintViolationException e1) {
+			// TODO Auto-generated catch block
+			try {
+				connect.rollback();
+				return false;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			try {
+				connect.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

@@ -36,6 +36,8 @@ public class RegisterC implements Initializable {
 		backButton_supplier.setOnAction(e -> {
 			Main.mainStage.setScene(Main.mainScene);
 		});
+		
+		// check if field not null or empty
 		registerButton_customer.setOnAction(e -> {
 			Kund kund = new Kund(socialSecField.getText(), firstNameField.getText(), lastNameField.getText(),
 					adressField.getText(), zipcodeField.getText(), cityField.getText(), emailField.getText(),
@@ -50,7 +52,7 @@ public class RegisterC implements Initializable {
 			}
 		});
 		provPercentField.addEventFilter(KeyEvent.KEY_TYPED , numericValidation(5));
-		
+		// check if field not null or empty
 		registerButton_supplier.setOnAction(e->{
 			Leverantor lev = new Leverantor(orgNumberField.getText(), supplierNameField.getText(), Float.parseFloat(provPercentField.getText()));
 			boolean registered = rKund.registerLeverantorToDatabase(lev);
