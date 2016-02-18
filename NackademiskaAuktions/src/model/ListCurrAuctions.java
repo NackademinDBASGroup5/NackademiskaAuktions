@@ -3,11 +3,8 @@ package model;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
 
 public class ListCurrAuctions {
 	
@@ -46,7 +43,7 @@ public class ListCurrAuctions {
 			
 			while(rs.next()){
 				
-				//System.out.println(rs.getString("Produkt")+" "+rs.getString("namn")+" "+rs.getFloat("Provision")+" "+rs.getString("sluttid"));
+			//	System.out.println(rs.getString("Produkt")+" "+rs.getString("namn")+" "+rs.getFloat("Provision")+" "+rs.getString("sluttid"));
 				
 				
 			}
