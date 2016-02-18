@@ -6,6 +6,9 @@ import java.util.ResourceBundle;
 import application.Kund;
 import application.Leverantor;
 import application.Main;
+import application.Produkt;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +19,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import model.RegisterAuktion;
 import model.RegisterStuff;
 
 public class RegisterC implements Initializable {
@@ -43,6 +47,9 @@ public class RegisterC implements Initializable {
 		backButton_supplier.setOnAction(e -> {
 			Main.mainStage.setScene(Main.mainScene);
 		});
+		backButton_product.setOnAction(e -> {
+			Main.mainStage.setScene(Main.mainScene);
+		});
 		socialSecField.addEventFilter(KeyEvent.KEY_TYPED , onlyNumericValidation(12));
 		zipcodeField.addEventFilter(KeyEvent.KEY_TYPED , onlyNumericValidation(5));
 		phonenumberField.addEventFilter(KeyEvent.KEY_TYPED , bindNummerValidation(15));
@@ -64,10 +71,24 @@ public class RegisterC implements Initializable {
 		provPercentField.addEventFilter(KeyEvent.KEY_TYPED , numericValidation(5));
 		// check if field not null or empty
 		registerButton_supplier.setOnAction(e->{
-			Leverantor lev = new Leverantor(orgNumberField.getText(), supplierNameField.getText(), Float.parseFloat(provPercentField.getText()));
+			Leverantor lev = new Leverantor(orgNumberField.getText(), productNameField.getText(), Float.parseFloat(provPercentField.getText()));
 			boolean registered = rKund.registerLeverantorToDatabase(lev);
 			String success = "Ny Leverantör registrerad";
 			String fail = "något gick fel, eller Leverantören finns redan";
+			if (registered){
+				warningMessage(success);
+			}else{
+				warningMessage(fail);
+			}
+		});
+		RegisterAuktion ra = new RegisterAuktion(); // detta är temp, ska läggas ihop med annan logik
+		ObservableList<Leverantor> levOptions = FXCollections.observableArrayList(ra.getLeverantorer());
+		supplierCombo.setItems(levOptions);
+		registerButton_product.setOnAction(e->{
+			Produkt prod = new Produkt(supplierCombo.getSelectionModel().getSelectedItem().getOrgnummer(),productNameField.getText(), productDescriptArea.getText(), null);
+			boolean registered = rKund.registerProduktToDatabase(prod);
+			String success = "Ny produkt registrerad";
+			String fail = "något gick fel, eller produkten finns redan";
 			if (registered){
 				warningMessage(success);
 			}else{
