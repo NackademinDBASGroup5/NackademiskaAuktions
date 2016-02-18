@@ -46,7 +46,7 @@ public class ListCurrAuctions {
 			
 			while(rs.next()){
 				
-				System.out.println(rs.getString("Produkt")+" "+rs.getString("namn")+" "+rs.getFloat("Provision")+" "+rs.getString("sluttid"));
+				//System.out.println(rs.getString("Produkt")+" "+rs.getString("namn")+" "+rs.getFloat("Provision")+" "+rs.getString("sluttid"));
 				
 				
 			}
