@@ -36,6 +36,12 @@ public class Leverantor {
 	public void setProvisionsprocent(float provisionsprocent) {
 		this.provisionsprocent = provisionsprocent;
 	}
+
+	@Override
+	public String toString() {
+		return  namn ;
+	}
+	
 	
 	
 	

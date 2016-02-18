@@ -55,7 +55,8 @@ public class RegisterAuktion {
 	public ArrayList<Produkt> getLeverantorProdukt(Leverantor selectedItem) {
 		ArrayList<Produkt> prodList = new ArrayList<Produkt>();
 		try {
-			pstm = connect.prepareStatement("SELECT * from produkt where produkt.leverantör=?");
+			pstm = connect.prepareStatement("SELECT * from produkt "
+					+ "where produkt.leverantör=?");
 			pstm.setString(1, selectedItem.getOrgnummer());
 			rset = pstm.executeQuery();
 			while (rset.next()) {
