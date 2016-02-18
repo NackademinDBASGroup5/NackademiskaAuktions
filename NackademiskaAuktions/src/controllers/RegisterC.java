@@ -36,7 +36,9 @@ public class RegisterC implements Initializable {
 		backButton_supplier.setOnAction(e -> {
 			Main.mainStage.setScene(Main.mainScene);
 		});
-		
+		socialSecField.addEventFilter(KeyEvent.KEY_TYPED , onlyNumericValidation(12));
+		zipcodeField.addEventFilter(KeyEvent.KEY_TYPED , onlyNumericValidation(5));
+		phonenumberField.addEventFilter(KeyEvent.KEY_TYPED , bindNummerValidation(15));
 		// check if field not null or empty
 		registerButton_customer.setOnAction(e -> {
 			Kund kund = new Kund(socialSecField.getText(), firstNameField.getText(), lastNameField.getText(),
@@ -51,6 +53,7 @@ public class RegisterC implements Initializable {
 				warningMessage(fail);
 			}
 		});
+		orgNumberField.addEventFilter(KeyEvent.KEY_TYPED , bindNummerValidation(25));
 		provPercentField.addEventFilter(KeyEvent.KEY_TYPED , numericValidation(5));
 		// check if field not null or empty
 		registerButton_supplier.setOnAction(e->{
@@ -74,6 +77,46 @@ public class RegisterC implements Initializable {
 	                e.consume();
 	            }
 	            if(e.getCharacter().matches("[0-9.]")){ 
+	                if(txt_TextField.getText().contains(".") && e.getCharacter().matches("[.]")){
+	                    e.consume();
+	                }else if(txt_TextField.getText().length() == 0 && e.getCharacter().matches("[.]")){
+	                    e.consume(); 
+	                }
+	            }else{
+	                e.consume();
+	            }
+	        }
+	    };
+	}   
+	public EventHandler<KeyEvent> bindNummerValidation(final Integer max_Lengh) {
+	    return new EventHandler<KeyEvent>() {
+	        @Override
+	        public void handle(KeyEvent e) {
+	            TextField txt_TextField = (TextField) e.getSource();                
+	            if (txt_TextField.getText().length() >= max_Lengh) {                    
+	                e.consume();
+	            }
+	            if(e.getCharacter().matches("[0-9-]")){ 
+	                if(txt_TextField.getText().contains("-") && e.getCharacter().matches("[-]")){
+	                    e.consume();
+	                }else if(txt_TextField.getText().length() == 0 && e.getCharacter().matches("[-]")){
+	                    e.consume(); 
+	                }
+	            }else{
+	                e.consume();
+	            }
+	        }
+	    };
+	}   
+	public EventHandler<KeyEvent> onlyNumericValidation(final Integer max_Lengh) {
+	    return new EventHandler<KeyEvent>() {
+	        @Override
+	        public void handle(KeyEvent e) {
+	            TextField txt_TextField = (TextField) e.getSource();                
+	            if (txt_TextField.getText().length() >= max_Lengh) {                    
+	                e.consume();
+	            }
+	            if(e.getCharacter().matches("[0-9]")){ 
 	                if(txt_TextField.getText().contains(".") && e.getCharacter().matches("[.]")){
 	                    e.consume();
 	                }else if(txt_TextField.getText().length() == 0 && e.getCharacter().matches("[.]")){
