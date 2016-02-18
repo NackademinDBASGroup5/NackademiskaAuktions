@@ -25,7 +25,7 @@ public class RegisterAuktion {
 
 	public RegisterAuktion() {
 		try {
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "thobias", "byll@r");
+			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "simon", "abc123");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -85,9 +85,7 @@ public class RegisterAuktion {
 	public boolean registerToDatabase(Produkt selectedItem, int utropspris, int acceptpris, String localDate,
 			String localDate2, String endTime) {
 		String currTime = new SimpleDateFormat("HH:mm:ss").format(new Date());
-		System.out.println(endTime);
 		endTime = endTime+":00:00";
-		System.out.println(endTime);
 		try {
 			connect.setAutoCommit(false);
 			PreparedStatement prepstm = connect.prepareStatement("call startAuktion (?, ?, ?, ?, ?)");

@@ -22,7 +22,7 @@ public class ListCurrAuctions {
 	public ListCurrAuctions(){
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "thobias", "byll@r");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "simon", "abc123");
 			cstm = conn.prepareCall("{CALL datumintervall(?,?)}");
 
 		} catch (SQLException e) {
@@ -34,7 +34,7 @@ public class ListCurrAuctions {
 	}
 	
 	
-	public ResultSet getAuctions(String from, String to){
+	public ResultSet getAuctionsIntervall(String from, String to){
 		
 		
 		try {
@@ -63,5 +63,8 @@ public class ListCurrAuctions {
 		return rs;
 	
 	}
+	
+	
+	
 
 }

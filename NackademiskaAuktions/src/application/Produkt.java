@@ -23,6 +23,14 @@ public class Produkt {
 		this.bild = bild;
 		this.registreringsdatum = registreringsdatum;
 	}
+	public Produkt(String leverantor, String namn, String beskrivning, Image bild) {
+		super();
+		this.leverantor = leverantor;
+		this.namn = namn;
+		this.beskrivning = beskrivning;
+		this.bild = bild;
+	}
+
 
 
 	public int getId() {

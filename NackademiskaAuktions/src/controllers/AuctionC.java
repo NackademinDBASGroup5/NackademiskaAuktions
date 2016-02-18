@@ -29,8 +29,10 @@ public class AuctionC implements Initializable {
 	@FXML
 	Button listButton_curr, listAllButton_curr, listButton_hist, listAllButton_hist, backButton_curr, backButton_hist;
 
-	@FXML TableView tableView_hist;
-	@FXML TableView <Auktion>tableView_curr;
+	@FXML
+	TableView tableView_hist;
+	@FXML
+	TableView<Auktion> tableView_curr;
 
 	CallableStatement cstm = null;
 	ResultSet rs = null;
@@ -41,19 +43,16 @@ public class AuctionC implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		TableColumn firstCol = new TableColumn("Produkt");
-		//firstCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("produkt_"));
+		firstCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("produkt_"));
+
 		TableColumn secondCol = new TableColumn("Namn");
-		//secondCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("namn_"));
+		secondCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("namn_"));
 
 		TableColumn thirdCol = new TableColumn("Provision");
-		//thirdCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("provision_"));
+		thirdCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("provision_"));
 
 		TableColumn forthCol = new TableColumn("Sluttid");
-		//forthCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("sluttid_"));
-		
-
-
-	
+		forthCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("sluttid_"));
 
 		ListCurrAuctions currAuctions = new ListCurrAuctions();
 
@@ -66,33 +65,28 @@ public class AuctionC implements Initializable {
 		});
 
 		listButton_curr.setOnAction(a -> {
-
-			rs = currAuctions.getAuctions(fromDatePicker_curr.getValue().toString(),
-					toDatePicker_curr.getValue().toString());
 			
+			data.removeAll(data);
+			
+			rs = currAuctions.getAuctionsIntervall(fromDatePicker_curr.getValue().toString(),
+					toDatePicker_curr.getValue().toString());
+
 			try {
-				while(rs.next()){
-					
-					data.add(new Auktion(rs.getString("produkt"),rs.getString("namn"),rs.getFloat("provision"),rs.getString("sluttid")));
+				while (rs.next()) {
+
+					data.add(new Auktion(rs.getString("produkt"), rs.getString("namn"), rs.getFloat("provision"),
+							rs.getString("sluttid")));
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			firstCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("produkt_"));
-			
-			secondCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("namn_"));
 
-			
-			thirdCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("provision_"));
-
-			forthCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("sluttid_"));
-			
 			tableView_curr.setItems(data);
-			tableView_curr.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol);
-
 
 		});
+		
+		tableView_curr.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol);
 
 
 	}
