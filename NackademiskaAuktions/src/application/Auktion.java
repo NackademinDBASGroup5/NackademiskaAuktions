@@ -156,10 +156,4 @@ public class Auktion {
 	public void setProvision(float provision) {
 		this.provision = provision;
 	}
-
-
-
-
-	
-
 }
