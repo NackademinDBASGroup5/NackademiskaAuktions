@@ -101,4 +101,4 @@ foreign key (leverantör) references Leverantör(orgnummer),
 foreign key (kund)  references kund(personnummer)
 );
 create index kundhistorik on auktionshistorik(kund);
-create index penghistorik on auktionshistorik(kronor);
+create index penghistorik on auktionshistorik(Bud);
