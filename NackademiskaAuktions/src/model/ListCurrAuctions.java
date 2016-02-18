@@ -22,7 +22,7 @@ public class ListCurrAuctions {
 	public ListCurrAuctions(){
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "simon", "abc123");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "thobias", "byll@r");
 			cstm = conn.prepareCall("{CALL datumintervall(?,?)}");
 
 		} catch (SQLException e) {
