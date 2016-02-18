@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 
 import application.Kund;
 import application.Leverantor;
+import application.Produkt;
 
 
 public class RegisterStuff {
@@ -19,7 +21,7 @@ public class RegisterStuff {
 	
 	public RegisterStuff(){
 		try {
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "thobias", "byll@r");
+			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "simon", "abc123");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -104,6 +106,43 @@ public class RegisterStuff {
 		}
 	return false;
 
+	}
+	public boolean registerProduktToDatabase(Produkt prod) {
+		try {
+			connect.setAutoCommit(false);
+			PreparedStatement prepstm = connect.prepareStatement("Insert into Produkt("
+					+ "Leverantör, namn, beskrivning, bild, registreringsDatum)" + " Values (?, ?, ?, ?, now())");
+			prepstm.setString(1, prod.getLeverantor());
+			prepstm.setString(2,prod.getNamn());
+			prepstm.setString(3, prod.getBeskrivning());
+			prepstm.setBlob(4, (Blob) prod.getBild());
+			
+			int a = prepstm.executeUpdate();
+			if (a == 1) {
+				connect.commit();
+				return true;
+			}
+		} catch (MySQLIntegrityConstraintViolationException e1) {
+			// TODO Auto-generated catch block
+			 try {
+				connect.rollback();
+				return false;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			try {
+				connect.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+	return false;
 	}
 	
 
