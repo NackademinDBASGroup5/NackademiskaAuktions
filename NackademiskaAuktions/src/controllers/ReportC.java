@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import model.Reports;
 
 public class ReportC implements Initializable {
 
@@ -20,11 +21,16 @@ public class ReportC implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		Reports reports = new Reports();
 		
 		backButton.setOnAction(e->{
 			Main.mainStage.setScene(Main.mainScene);
 		});
 		
+		
+		provisionPerMonthButton.setOnAction(e ->{
+			reports.showProvisions();
+		});
 	}
 
 }
