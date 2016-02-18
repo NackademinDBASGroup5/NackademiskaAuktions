@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import model.RegisterStuff;
@@ -20,11 +22,16 @@ public class RegisterC implements Initializable {
 
 	@FXML
 	TextField socialSecField, firstNameField, lastNameField, adressField, zipcodeField, cityField, emailField,
-			phonenumberField, orgNumberField, supplierNameField, provPercentField;
+			phonenumberField, orgNumberField, supplierNameField, provPercentField, productNameField;
 
 	@FXML
-	Button registerButton_customer, backButton_customer, registerButton_supplier, backButton_supplier;
+	Button registerButton_customer, backButton_customer, registerButton_supplier, backButton_supplier, backButton_product, registerButton_product;
 
+	@FXML
+	TextArea productDescriptArea;
+	
+	@FXML ComboBox<Leverantor> supplierCombo;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		RegisterStuff rKund = new RegisterStuff();
@@ -36,6 +43,8 @@ public class RegisterC implements Initializable {
 		backButton_supplier.setOnAction(e -> {
 			Main.mainStage.setScene(Main.mainScene);
 		});
+		
+		// check if field not null or empty
 		registerButton_customer.setOnAction(e -> {
 			Kund kund = new Kund(socialSecField.getText(), firstNameField.getText(), lastNameField.getText(),
 					adressField.getText(), zipcodeField.getText(), cityField.getText(), emailField.getText(),
@@ -50,7 +59,7 @@ public class RegisterC implements Initializable {
 			}
 		});
 		provPercentField.addEventFilter(KeyEvent.KEY_TYPED , numericValidation(5));
-		
+		// check if field not null or empty
 		registerButton_supplier.setOnAction(e->{
 			Leverantor lev = new Leverantor(orgNumberField.getText(), supplierNameField.getText(), Float.parseFloat(provPercentField.getText()));
 			boolean registered = rKund.registerLeverantorToDatabase(lev);
