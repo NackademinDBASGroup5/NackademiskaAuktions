@@ -25,12 +25,6 @@
                   <TextField fx:id="cityField" layoutX="135.0" layoutY="199.0" prefHeight="25.0" prefWidth="110.0" promptText="Ort" />
                   <TextField fx:id="emailField" layoutX="267.0" layoutY="161.0" promptText="E-Postadress" />
                   <TextField fx:id="phonenumberField" layoutX="267.0" layoutY="199.0" promptText="Telefonnummer" />
-                  <Text fill="WHITE" layoutX="30.0" layoutY="50.0" stroke="BLACK" strokeType="OUTSIDE" text="Ny kund">
-                     <font>
-                        <Font name="System Bold Italic" size="46.0" />
-                     </font>
-                  </Text>
-                  <Separator layoutX="28.0" layoutY="64.0" prefHeight="0.0" prefWidth="544.0" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -38,12 +32,6 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Text fill="WHITE" layoutX="14.0" layoutY="55.0" stroke="BLACK" strokeType="OUTSIDE" text="Ny Leverantör">
-                     <font>
-                        <Font name="System Bold Italic" size="46.0" />
-                     </font>
-                  </Text>
-                  <Separator layoutX="24.0" layoutY="68.0" prefHeight="2.0" prefWidth="556.0" />
                   <TextField fx:id="orgNumberField" layoutX="232.0" layoutY="110.0" promptText="Organisationsnummer" />
                   <TextField fx:id="supplierNameField" layoutX="232.0" layoutY="148.0" promptText="Leverantörsnamn" />
                   <Button fx:id="registerButton_supplier" layoutX="227.0" layoutY="251.0" mnemonicParsing="false" text="Registrera">
@@ -56,5 +44,22 @@
                </children></AnchorPane>
       </content>
     </Tab>
+      <Tab text="Registrera Produkt">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ComboBox fx:id="supplierCombo" layoutX="195.0" layoutY="44.0" prefWidth="150.0" promptText="Leverantör" />
+                  <TextField fx:id="productNameField" layoutX="196.0" layoutY="89.0" promptText="Produktnamn" />
+                  <TextArea fx:id="productDescriptArea" layoutX="163.0" layoutY="132.0" prefHeight="200.0" prefWidth="200.0" promptText="Kort produktbeskrivning" wrapText="true" />
+                  <Button fx:id="backButton_product" layoutX="21.0" layoutY="332.0" mnemonicParsing="false" text="Tillbaka till menyn" />
+                  <Button fx:id="registerButton_product" layoutX="401.0" layoutY="278.0" mnemonicParsing="false" text="Registrera">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
   </tabs>
 </TabPane>

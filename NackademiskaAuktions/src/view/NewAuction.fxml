@@ -20,11 +20,7 @@
       <DatePicker fx:id="fromDatePicker" layoutX="122.0" layoutY="208.0" promptText="Startdatum" />
       <DatePicker fx:id="toDatePicker" layoutX="317.0" layoutY="208.0" promptText="Slutdatum" />
       <ComboBox fx:id="endTimeCombo" layoutX="344.0" layoutY="251.0" prefWidth="150.0" promptText="Sluttid" />
-      <Text fill="WHITE" layoutX="32.0" layoutY="64.0" stroke="BLACK" strokeType="OUTSIDE" text="Lägg till ny auktion">
-         <font>
-            <Font name="System Bold Italic" size="46.0" />
-         </font>
-      </Text>
       <Separator layoutX="14.0" layoutY="84.0" prefHeight="3.0" prefWidth="576.0" />
+      <ComboBox fx:id="startTimeCombo" layoutX="147.0" layoutY="251.0" prefWidth="150.0" promptText="Starttid" />
    </children>
 </AnchorPane>
