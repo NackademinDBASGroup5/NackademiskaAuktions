@@ -2,9 +2,9 @@ package application;
 
 public class Leverantor {
 
-	String orgnummer;
-	String namn;
-	float provisionsprocent;
+	private String orgnummer;
+	private String namn;
+	private float provisionsprocent;
 	
 	public Leverantor(String orgnummer, String namn, float provisionsprocent) {
 		super();

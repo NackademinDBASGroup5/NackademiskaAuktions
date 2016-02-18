@@ -2,14 +2,14 @@ package application;
 
 public class Kund {
 	
-	String personnummer;
-	String fornamn;
-	String efternamn;
-	String gatuadress;
-	String postnummer;
-	String ort;
-	String epost;
-	String telefon;
+	private String personnummer;
+	private String fornamn;
+	private String efternamn;
+	private String gatuadress;
+	private String postnummer;
+	private String ort;
+	private String epost;
+	private String telefon;
 	
 	public Kund(String personnummer, String fornamn, String efternamn, String gatuadress, String postnummer, String ort,
 			String epost, String telefon) {
