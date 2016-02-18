@@ -12,11 +12,13 @@ DELIMITER ;
 select * from produkt;
 
 -- 2
+DROP PROCEDURE IF EXISTS startAuktion;
 delimiter //
 
 create procedure startAuktion (in produktin int, in utropsprisin int, in acceptprisin int, in starttidin datetime, in sluttidin datetime) 
 
 begin 
+if  not exists (select produkt from auktion where produkt = produktin) then
 if  acceptprisin is not null then
 insert into auktion(produkt, utropspris, acceptpris, starttid, sluttid)
 values (produktin, utropsprisin, acceptprisin, starttidin, sluttidin);
@@ -24,11 +26,10 @@ else
 insert into auktion(produkt, utropspris, starttid, sluttid)
 values (produktin, utropsprisin, starttidin, sluttidin);
 end if;
+end if;
 end //
 
 delimiter ;
-
-DROP PROCEDURE IF EXISTS startAuktion;
 call startAuktion (1, 100, null, now(), '2016-02-17 13:50:00');
 call startAuktion (1, 200, null, '2015-02-02 12:00:00', '2015-02-22 12:00:00');
 select * from auktion;
