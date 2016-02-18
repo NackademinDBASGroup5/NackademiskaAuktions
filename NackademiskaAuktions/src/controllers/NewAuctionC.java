@@ -29,7 +29,7 @@ public class NewAuctionC implements Initializable {
 	ComboBox<Produkt> productCombo;
 
 	@FXML
-	ComboBox<String> endTimeCombo;
+	ComboBox<String> endTimeCombo, startTimeCombo;
 
 	@FXML
 	TextField startPriceField, acceptPriceField;
