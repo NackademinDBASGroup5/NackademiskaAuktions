@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testcontrollers.NewAuctionCon">
+   <children>
+      <ComboBox fx:id="supplierCombo" layoutX="436.0" layoutY="62.0" prefWidth="150.0" promptText="Leverantör" />
+      <ComboBox fx:id="productCombo" disable="true" layoutX="436.0" layoutY="103.0" prefWidth="150.0" promptText="Produkt" />
+      <TextField fx:id="startPriceField" layoutX="437.0" layoutY="141.0" promptText="Utropspris" />
+      <TextField fx:id="acceptPriceField" layoutX="437.0" layoutY="180.0" promptText="Acceptpris (frivilligt)" />
+      <Button fx:id="submitButton" layoutX="355.0" layoutY="330.0" mnemonicParsing="false" text="Lägg ut auktion">
+         <font>
+            <Font size="25.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../bin/images/tickOk.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <DatePicker fx:id="fromDatePicker" layoutX="234.0" layoutY="255.0" prefHeight="25.0" prefWidth="149.0" promptText="Startdatum" />
+      <DatePicker fx:id="toDatePicker" layoutX="436.0" layoutY="255.0" prefHeight="25.0" prefWidth="150.0" promptText="Slutdatum" />
+      <ComboBox fx:id="endTimeCombo" layoutX="500.0" layoutY="286.0" prefHeight="25.0" prefWidth="86.0" promptText="Sluttid" />
+      <ComboBox fx:id="startTimeCombo" layoutX="297.0" layoutY="286.0" prefHeight="25.0" prefWidth="86.0" promptText="Starttid" />
+      <ImageView fitHeight="221.0" fitWidth="436.0" layoutX="50.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../bin/images/addAuction.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

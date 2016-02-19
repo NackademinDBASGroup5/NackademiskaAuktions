@@ -32,12 +32,12 @@ public class Main extends Application {
 	
 	public static Stage mainStage;
 	public static Scene mainScene;
-	public static String username;
-	public static String password;
+	public static String username = "simon";
+	public static String password = "abc123";
 	
 	@Override
 	public void start(Stage primaryStage) {
-		login();
+		//login();
 		try {
 			
 			mainStage = primaryStage;
@@ -56,7 +56,7 @@ public class Main extends Application {
 	private Scene firstScene() {
 
 		// Testar integrerar vy
-		URL location = this.getClass().getResource("/testview/MyMeny.fxml");
+		URL location = this.getClass().getResource("/testview/IntegratedMenu.fxml");
 		// Orginal
 		// URL location = this.getClass().getResource("/view/Meny.fxml");
 
