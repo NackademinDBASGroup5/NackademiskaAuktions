@@ -4,6 +4,9 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Optional;
 
 import javafx.application.Application;
@@ -74,16 +77,16 @@ public class Main extends Application {
 	}
 	
 	private void login(){
-		// Create the custom dialog.
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
-		dialog.setTitle("Login Dialog");
-		dialog.setHeaderText("Look, a Custom Login Dialog");
+		dialog.setTitle("Login");
+		dialog.setHeaderText("");
+		dialog.setOnCloseRequest(e->{
+			System.exit(0);
+		});
 
-		// Set the button types.
 		ButtonType loginButtonType = new ButtonType("Login", ButtonData.OK_DONE);
-		dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+		dialog.getDialogPane().getButtonTypes().addAll(loginButtonType);
 
-		// Create the username and password labels and fields.
 		GridPane grid = new GridPane();
 		grid.setHgap(10);
 		grid.setVgap(10);
@@ -99,21 +102,15 @@ public class Main extends Application {
 		grid.add(new Label("Password:"), 0, 1);
 		grid.add(password, 1, 1);
 
-		// Enable/Disable login button depending on whether a username was entered.
 		Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
 		loginButton.setDisable(true);
-
-		// Do some validation (using the Java 8 lambda syntax).
 		username.textProperty().addListener((observable, oldValue, newValue) -> {
 		    loginButton.setDisable(newValue.trim().isEmpty());
 		});
 
 		dialog.getDialogPane().setContent(grid);
 
-		// Request focus on the username field by default.
 		Platform.runLater(() -> username.requestFocus());
-
-		// Convert the result to a username-password-pair when the login button is clicked.
 		dialog.setResultConverter(dialogButton -> {
 		    if (dialogButton == loginButtonType) {
 		        return new Pair<>(username.getText(), password.getText());
@@ -124,9 +121,32 @@ public class Main extends Application {
 		Optional<Pair<String, String>> result = dialog.showAndWait();
 
 		result.ifPresent(usernamePassword -> {
-		    Main.username = usernamePassword.getKey();
-		    Main.password = usernamePassword.getValue();
+			if (access(usernamePassword.getKey(),usernamePassword.getValue())){
+				
+				 Main.username = usernamePassword.getKey();
+				    Main.password = usernamePassword.getValue();
+			}
+			else
+				login();
 		});
+	}
+	
+	private boolean access(String user, String pass){
+		Connection connect = null;
+		try {
+			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", user, pass);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return false;
+		}
+		try {
+			if (connect != null)
+			connect.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
 	}
 	
 	
