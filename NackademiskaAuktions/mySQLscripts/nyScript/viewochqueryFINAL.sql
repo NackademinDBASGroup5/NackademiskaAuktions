@@ -45,8 +45,9 @@ inner join kund on kund.personnummer = auktionshistorik.kund
 WHERE (auktionsnummer, bud) IN 
 ( SELECT auktionsnummer, MAX(Bud)
   FROM auktionshistorik
-  GROUP BY auktionsnummer, bud
+  GROUP BY auktionsnummer
 ) order by auktionsnummer;
+
 
 -- lista summan på vad som varje vinnare totalt ska pröjsa
 SELECT * from VunnaAuktioner
