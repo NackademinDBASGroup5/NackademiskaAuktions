@@ -68,3 +68,21 @@ HAVING auktionsnummer=4;
 
 select * from auktion;
 SELECT * from bud;
+
+----------------------------------------------
+---- 9
+
+CREATE VIEW Provision AS
+SELECT auktionsnummer, max(bud.kronor)*(leverantör.provisionsprocent/100) AS 'Provision', sluttid FROM auktion
+INNER JOIN Produkt ON produkt.id=produkt
+INNER JOIN Leverantör ON leverantör.orgnummer=produkt.leverantör
+INNER JOIN Bud ON auktionsnummer=bud.auktion
+GROUP BY auktionsnummer
+UNION ALL
+SELECT auktionsnummer,max(Bud)*(leverantör.provisionsprocent/100) AS 'Provision', Budtid FROM auktionshistorik
+
+INNER JOIN Leverantör ON auktionshistorik.leverantör=leverantör.OrgNummer
+GROUP BY auktionshistorik.auktionsnummer;
+
+select * from provision;
+SELECT date_format(sluttid,'%b %Y') AS 'Månad', ROUND(sum(provision),2) AS 'Provision' FROM provision group by month(sluttid);
