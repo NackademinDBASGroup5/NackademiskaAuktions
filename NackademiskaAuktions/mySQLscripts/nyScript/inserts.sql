@@ -33,6 +33,7 @@ INSERT INTO produktKategori (produkt, kategori) VALUES (5,5);
 INSERT INTO produktKategori (produkt, kategori) VALUES (6,3);
 INSERT INTO produktKategori (produkt, kategori) VALUES (6,7);
 
+
 INSERT INTO auktion (Produkt, utropspris, Acceptpris, Starttid, sluttid) VALUES (1,999, 4000, now(), '2015-02-21 21:00:00');
 INSERT INTO auktion (Produkt, utropspris, Acceptpris, Starttid, sluttid) VALUES (2,5000, 12000, now(), '2015-02-21 21:00:00');
 INSERT INTO auktion (Produkt, utropspris, Acceptpris, Starttid, sluttid) VALUES (3,1, 800, now(), '2015-02-21 21:00:00');
