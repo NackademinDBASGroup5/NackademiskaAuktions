@@ -32,6 +32,7 @@ public class ListCurrAuctions {
 
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "thobias", "byll@r");
+
 			cstm = conn.prepareCall("{CALL datumintervall(?,?)}");
 			stm = conn.createStatement();
 			rs2 = stm.executeQuery(
