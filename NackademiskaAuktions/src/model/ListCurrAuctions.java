@@ -36,7 +36,7 @@ public class ListCurrAuctions {
 		
 		try {
 			cstm.setString(1, from);
-			cstm.setString(2, to);
+			cstm.setString(2, to+" 23:59:59");
 			cstm.execute();
 			rs=cstm.getResultSet();
 			

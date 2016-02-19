@@ -70,6 +70,7 @@ public class AuctionC implements Initializable {
 
 			rs = currAuctions.getAuctionsIntervall(fromDatePicker_curr.getValue().toString(),
 					toDatePicker_curr.getValue().toString());
+			
 
 			try {
 				while (rs.next()) {
