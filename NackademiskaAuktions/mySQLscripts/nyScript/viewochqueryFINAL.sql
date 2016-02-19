@@ -1,13 +1,14 @@
 use auktion;
 
-/*funkar inte*/
 CREATE VIEW AktuellaAuktioner AS
-SELECT auktion.auktionsnummer AS Auktion, produkt.namn AS Produkt, MAX(KRONOR) AS 'Högsta Bud', CONCAT(Kund.Förnamn, " ", Kund.Efternamn) AS Kund
-FROM Bud
-INNER JOIN auktion ON Bud.Auktion = Auktion.auktionsnummer
-INNER JOIN Kund ON Bud.kund = Kund.Personnummer
-INNER JOIN Produkt ON Auktion.produkt = Produkt.id
-GROUP BY auktion.auktionsnummer;
+SELECT bud.auktion, bud.kronor, CONCAT(kund.förnamn," ", kund.efternamn) AS Kund
+FROM bud
+inner join kund ON bud.kund = kund.personnummer
+ WHERE (auktion,kronor) IN 
+( SELECT auktion, MAX(kronor)
+  FROM bud
+  GROUP BY auktion
+);
 
 SELECT * FROM AktuellaAuktioner;
 
