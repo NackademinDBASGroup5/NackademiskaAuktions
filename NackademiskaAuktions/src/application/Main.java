@@ -22,7 +22,8 @@ public class Main extends Application {
 		try {
 			
 			mainStage = primaryStage;
-			mainStage.setResizable(false);
+			mainStage.setResizable(true);
+			//mainStage.setResizable(false);
 			mainScene = firstScene();
 			mainStage.setScene(mainScene);
 			mainStage.show();
@@ -34,7 +35,12 @@ public class Main extends Application {
 	}
 	
 	private Scene firstScene() {
-		URL location = this.getClass().getResource("/view/Meny.fxml");
+
+		// Testar integrerar vy
+		URL location = this.getClass().getResource("/testview/MyMeny.fxml");
+		// Orginal
+		// URL location = this.getClass().getResource("/view/Meny.fxml");
+
 		FXMLLoader loader = new FXMLLoader(location);
 		try {
 			Parent root = loader.load();
