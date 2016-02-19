@@ -2,10 +2,7 @@ package controllers;
 
 import java.net.URL;
 import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.Auktion;
@@ -85,6 +82,7 @@ public class AuctionC implements Initializable {
 			}
 
 			tableView_curr.setItems(data);
+			tableView_curr.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol);
 			
 			try {
 				rs.beforeFirst();
@@ -95,7 +93,7 @@ public class AuctionC implements Initializable {
 
 		});
 
-		tableView_curr.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol);
+		//tableView_curr.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol);
 		
 
 	}

@@ -16,6 +16,10 @@ public class Auktion {
 	String namn_;
 	String sluttid_;
 	float provision;
+	
+	public Auktion(){
+		
+	}
 
 	public Auktion(int auktionsnummer, Produkt produkt, int utropspris, int acceptpris, Date starttid, Date sluttid) {
 		super();
@@ -156,4 +160,11 @@ public class Auktion {
 	public void setProvision(float provision) {
 		this.provision = provision;
 	}
+
+	@Override
+	public String toString() {
+		return auktionsnummer+" "+ namn;
+	}
+	
+	
 }
