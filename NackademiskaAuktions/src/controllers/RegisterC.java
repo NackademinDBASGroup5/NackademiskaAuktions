@@ -16,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -38,6 +39,11 @@ public class RegisterC implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		TextField[] custFields = {socialSecField, firstNameField,lastNameField,adressField,
+				zipcodeField,cityField,emailField,phonenumberField};
+		TextField[] suppFields = {orgNumberField, supplierNameField, provPercentField};
+		
 		RegisterStuff rKund = new RegisterStuff();
 
 		backButton_customer.setOnAction(e -> {
@@ -55,31 +61,40 @@ public class RegisterC implements Initializable {
 		phonenumberField.addEventFilter(KeyEvent.KEY_TYPED , bindNummerValidation(15));
 		// check if field not null or empty
 		registerButton_customer.setOnAction(e -> {
-			Kund kund = new Kund(socialSecField.getText(), firstNameField.getText(), lastNameField.getText(),
-					adressField.getText(), zipcodeField.getText(), cityField.getText(), emailField.getText(),
-					phonenumberField.getText());
-			boolean registered = rKund.registerToDatabase(kund);
-			String success = "Ny kund registrerad";
-			String fail = "något gick fel, eller kunden finns redan";
-			if (registered){
-				warningMessage(success);
-			}else{
-				warningMessage(fail);
+			
+			if(isFilledCustomer(custFields)){
+				Kund kund = new Kund(socialSecField.getText(), firstNameField.getText(), lastNameField.getText(),
+						adressField.getText(), zipcodeField.getText(), cityField.getText(), emailField.getText(),
+						phonenumberField.getText());
+				boolean registered = rKund.registerToDatabase(kund);
+				String success = "Ny kund registrerad";
+				String fail = "Kund finns redan på valt personnummer";
+				if (registered){
+					warningMessage(success);
+				}else{
+					warningMessage(fail);
+				}	
 			}
+			
 		});
-		orgNumberField.addEventFilter(KeyEvent.KEY_TYPED , bindNummerValidation(25));
-		provPercentField.addEventFilter(KeyEvent.KEY_TYPED , numericValidation(5));
+		orgNumberField.addEventFilter(KeyEvent.KEY_TYPED , onlyNumericValidation(10));
+		provPercentField.addEventFilter(KeyEvent.KEY_TYPED , onlyNumericValidation(2));
 		// check if field not null or empty
 		registerButton_supplier.setOnAction(e->{
-			Leverantor lev = new Leverantor(orgNumberField.getText(), supplierNameField.getText(), Float.parseFloat(provPercentField.getText()));
-			boolean registered = rKund.registerLeverantorToDatabase(lev);
-			String success = "Ny Leverantör registrerad";
-			String fail = "något gick fel, eller Leverantören finns redan";
-			if (registered){
-				warningMessage(success);
-			}else{
-				warningMessage(fail);
+			
+			if(isFilledSupplier(suppFields)){
+				Leverantor lev = new Leverantor(orgNumberField.getText(), supplierNameField.getText(), Float.parseFloat(provPercentField.getText()));
+				boolean registered = rKund.registerLeverantorToDatabase(lev);
+				String success = "Ny Leverantör registrerad";
+				String fail = "något gick fel, eller Leverantören finns redan";
+				if (registered){
+					warningMessage(success);
+				}else{
+					warningMessage(fail);
+				}
 			}
+			
+			
 		});
 		RegisterAuktion ra = new RegisterAuktion(); // detta är temp, ska läggas ihop med annan logik
 		ObservableList<Leverantor> levOptions = FXCollections.observableArrayList(ra.getLeverantorer());
@@ -160,6 +175,44 @@ public class RegisterC implements Initializable {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setHeaderText(s);
 		alert.showAndWait();
+	}
+	
+	private boolean isFilledCustomer(TextField[] fields){
+		
+		for(TextField tf: fields){
+			if(tf.getText().equals("")){
+				String fail = "Var god fyll i alla fält";
+				warningMessage(fail);
+				return false;
+			}
+			
+		}
+		if(fields[0].getText().length()<12){
+			String fail = "Personnummer ska matas in med tolv siffror UTAN bindesstreck";
+			warningMessage(fail);
+			return false;
+		}
+		
+		return true;
+	}
+	
+private boolean isFilledSupplier(TextField[] fields){
+		
+		for(TextField tf: fields){
+			if(tf.getText().equals("")){
+				String fail = "Var god fyll i alla fält";
+				warningMessage(fail);
+				return false;
+			}
+			
+		}
+		if(fields[0].getText().length()<10){
+			String fail = "Organisationsnummer ska matas in med tio siffror UTAN bindesstreck";
+			warningMessage(fail);
+			return false;
+		}
+		
+		return true;
 	}
 
 }

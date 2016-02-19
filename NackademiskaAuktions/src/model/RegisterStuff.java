@@ -21,7 +21,7 @@ public class RegisterStuff {
 	
 	public RegisterStuff(){
 		try {
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "thobias", "byll@r");
+			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "simon", "abc123");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
