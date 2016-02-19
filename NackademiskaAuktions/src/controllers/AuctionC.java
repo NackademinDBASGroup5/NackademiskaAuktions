@@ -65,9 +65,9 @@ public class AuctionC implements Initializable {
 		});
 
 		listButton_curr.setOnAction(a -> {
-			
+
 			data.removeAll(data);
-			
+
 			rs = currAuctions.getAuctionsIntervall(fromDatePicker_curr.getValue().toString(),
 					toDatePicker_curr.getValue().toString());
 
@@ -85,9 +85,8 @@ public class AuctionC implements Initializable {
 			tableView_curr.setItems(data);
 
 		});
-		
-		tableView_curr.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol);
 
+		tableView_curr.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol);
 
 	}
 

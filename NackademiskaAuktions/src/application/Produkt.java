@@ -80,6 +80,11 @@ public class Produkt {
 	public void setRegistreringsdatum(Date registreringsdatum) {
 		this.registreringsdatum = registreringsdatum;
 	}
+	@Override
+	public String toString() {
+		return  namn ;
+	}
+	
 	
 	
 	

@@ -87,6 +87,13 @@ public class Kund {
 	public void setTelefon(String telefon) {
 		this.telefon = telefon;
 	}
+
+	@Override
+	public String toString() {
+		return "Kund [personnummer=" + personnummer + ", fornamn=" + fornamn + ", efternamn=" + efternamn
+				+ ", gatuadress=" + gatuadress + ", postnummer=" + postnummer + ", ort=" + ort + ", epost=" + epost
+				+ ", telefon=" + telefon + "]";
+	}
 	
 	
 
