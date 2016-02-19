@@ -53,6 +53,7 @@ public class AuctionC implements Initializable {
 
 		TableColumn forthCol = new TableColumn("Sluttid");
 		forthCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("sluttid_"));
+		forthCol.setPrefWidth(125);
 
 		ListCurrAuctions currAuctions = new ListCurrAuctions();
 
