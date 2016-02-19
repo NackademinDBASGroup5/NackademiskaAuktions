@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import application.Kund;
+import application.KundHistorik;
 import application.Provision;
 import javafx.util.Callback;
 
@@ -19,7 +20,7 @@ public class Reports {
 	public Reports() {
 
 		try {
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "simon", "abc123");
+			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "Simon", "abc123");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -28,16 +29,19 @@ public class Reports {
 
 	}
 
-	public ArrayList<Kund> getCustomerReport() {
-		ArrayList<Kund> kundList = new ArrayList<Kund>();
+	public ArrayList<KundHistorik> getCustomerReport() {
+		ArrayList<KundHistorik> kundList = new ArrayList<KundHistorik>();
 		try {
 			stm = connect.createStatement();
-			rset = stm.executeQuery("Select kund.* from auktionshistorik inner "
+			rset = stm.executeQuery("Select kund.*, vinnandebud from auktionshistorik inner "
 					+ "join kund on auktionshistorik.kund = kund.personnummer "
+					+ "inner join VunnaAuktioner on VunnaAuktioner.personnummer = kund.personnummer "
 					+ "group by kund.personnummer");
+			
+			
 			while (rset.next()) {
-				kundList.add(new Kund(rset.getString(1),rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5),rset.getString(6),
-						rset.getString(7), rset.getString(8)));
+				kundList.add(new KundHistorik(rset.getString(1),rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5),rset.getString(6),
+						rset.getString(7), rset.getString(8), rset.getFloat(9)));
 				
 			}
 			return kundList;

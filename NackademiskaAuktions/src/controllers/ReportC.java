@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import application.Auktion;
 import application.Historik;
 import application.Kund;
+import application.KundHistorik;
 import application.Main;
 import application.Provision;
 import javafx.application.Platform;
@@ -30,23 +31,24 @@ public class ReportC implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		Reports reports = new Reports();
-		TableColumn<Kund, String> firstCol = new TableColumn<Kund, String>("Personnummer");
-		firstCol.setCellValueFactory(new PropertyValueFactory<Kund, String>("personnummer"));
-		TableColumn<Kund, String> secondCol = new TableColumn<Kund, String>("Förnamn");
-		secondCol.setCellValueFactory(new PropertyValueFactory<Kund, String>("fornamn"));
-		TableColumn<Kund, String> thirdCol = new TableColumn<Kund, String>("Efternamn");
-		thirdCol.setCellValueFactory(new PropertyValueFactory<Kund, String>("efternamn"));
-		TableColumn<Kund, String> forthCol = new TableColumn<Kund, String>("Gatuadress");
-		forthCol.setCellValueFactory(new PropertyValueFactory<Kund, String>("gatuadress"));
-		TableColumn<Kund, String> fifthCol = new TableColumn<Kund, String>("Postnummer");
-		fifthCol.setCellValueFactory(new PropertyValueFactory<Kund, String>("postnummer"));
-		TableColumn<Kund, String> sixthCol = new TableColumn<Kund, String>("Ort");
-		sixthCol.setCellValueFactory(new PropertyValueFactory<Kund, String>("ort"));
-		TableColumn<Kund, String> seventhCol = new TableColumn<Kund, String>("Epost");
-		seventhCol.setCellValueFactory(new PropertyValueFactory<Kund, String>("epost"));
-		TableColumn<Kund, String> eightCol = new TableColumn<Kund, String>("Telefon");
-		eightCol.setCellValueFactory(new PropertyValueFactory<Kund, String>("telefon"));
+		TableColumn<KundHistorik, String> firstCol = new TableColumn<KundHistorik, String>("Personnummer");
+		firstCol.setCellValueFactory(new PropertyValueFactory<KundHistorik, String>("personnummer"));
+		TableColumn<KundHistorik, String> secondCol = new TableColumn<KundHistorik, String>("Förnamn");
+		secondCol.setCellValueFactory(new PropertyValueFactory<KundHistorik, String>("fornamn"));
+		TableColumn<KundHistorik, String> thirdCol = new TableColumn<KundHistorik, String>("Efternamn");
+		thirdCol.setCellValueFactory(new PropertyValueFactory<KundHistorik, String>("efternamn"));
+		TableColumn<KundHistorik, String> forthCol = new TableColumn<KundHistorik, String>("Gatuadress");
+		forthCol.setCellValueFactory(new PropertyValueFactory<KundHistorik, String>("gatuadress"));
+		TableColumn<KundHistorik, String> fifthCol = new TableColumn<KundHistorik, String>("Postnummer");
+		fifthCol.setCellValueFactory(new PropertyValueFactory<KundHistorik, String>("postnummer"));
+		TableColumn<KundHistorik, String> sixthCol = new TableColumn<KundHistorik, String>("Ort");
+		sixthCol.setCellValueFactory(new PropertyValueFactory<KundHistorik, String>("ort"));
+		TableColumn<KundHistorik, String> seventhCol = new TableColumn<KundHistorik, String>("Epost");
+		seventhCol.setCellValueFactory(new PropertyValueFactory<KundHistorik, String>("epost"));
+		TableColumn<KundHistorik, String> eightCol = new TableColumn<KundHistorik, String>("Telefon");
+		eightCol.setCellValueFactory(new PropertyValueFactory<KundHistorik, String>("telefon"));
+		TableColumn<KundHistorik, String> ninthCol = new TableColumn<KundHistorik, String>("Totalt Handlat");
+		ninthCol.setCellValueFactory(new PropertyValueFactory<KundHistorik, String>("ordervarde"));
 		
 		TableColumn<Provision, String> provisionCol = new TableColumn<Provision, String>("Månad");
 		provisionCol.setCellValueFactory(new PropertyValueFactory<Provision, String>("manad"));
@@ -62,11 +64,11 @@ public class ReportC implements Initializable {
 			tableView.getColumns().clear();
 			tableView.getItems().clear();
 			Platform.runLater(()->{
-				ObservableList<Kund> data = FXCollections.observableArrayList(rep.getCustomerReport());
+				ObservableList<KundHistorik> data = FXCollections.observableArrayList(rep.getCustomerReport());
 				tableView.refresh();
 
 				tableView.setItems(data);
-				tableView.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol, fifthCol, sixthCol, seventhCol, eightCol );
+				tableView.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol, fifthCol, sixthCol, seventhCol, eightCol, ninthCol );
 			});
 		
 		});

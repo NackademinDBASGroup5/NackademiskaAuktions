@@ -73,6 +73,7 @@ SELECT * from bud;
 ---- 9
 
 CREATE VIEW Provision AS
+<<<<<<< HEAD
 SELECT auktionsnummer, max(bud.kronor)*(leverantör.provisionsprocent/100) AS 'Provision', sluttid FROM auktion
 INNER JOIN Produkt ON produkt.id=produkt
 INNER JOIN Leverantör ON leverantör.orgnummer=produkt.leverantör
@@ -86,3 +87,18 @@ GROUP BY auktionshistorik.auktionsnummer;
 
 select * from provision;
 SELECT date_format(sluttid,'%b %Y') AS 'Månad', ROUND(sum(provision),2) AS 'Provision' FROM provision group by month(sluttid);
+=======
+SELECT auktionsnummer, max(bud.kronor)*(leverantÃ¶r.provisionsprocent/100) AS 'Provision', sluttid FROM auktion
+INNER JOIN Produkt ON produkt.id=produkt
+INNER JOIN LeverantÃ¶r ON leverantÃ¶r.orgnummer=produkt.leverantÃ¶r
+INNER JOIN Bud ON auktionsnummer=bud.auktion
+GROUP BY auktionsnummer
+UNION ALL
+SELECT auktionsnummer,max(Bud)*(leverantÃ¶r.provisionsprocent/100) AS 'Provision', Budtid FROM auktionshistorik
+
+INNER JOIN LeverantÃ¶r ON auktionshistorik.leverantÃ¶r=leverantÃ¶r.OrgNummer
+GROUP BY auktionshistorik.auktionsnummer;
+
+select * from provision;
+SELECT date_format(sluttid,'%b %Y') AS 'MÃ¥nad', ROUND(sum(provision),2) AS 'Provision' FROM provision group by month(sluttid);
+>>>>>>> branch 'master' of https://github.com/NackademinDBASGroup5/NackademiskaAuktions.git
