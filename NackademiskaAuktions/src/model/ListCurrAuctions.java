@@ -19,7 +19,7 @@ public class ListCurrAuctions {
 	public ListCurrAuctions(){
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "thobias", "byll@r");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "simon", "abc123");
 			cstm = conn.prepareCall("{CALL datumintervall(?,?)}");
 
 		} catch (SQLException e) {
@@ -36,32 +36,16 @@ public class ListCurrAuctions {
 		
 		try {
 			cstm.setString(1, from);
-			cstm.setString(2, to);
+			cstm.setString(2, to+" 23:59:59");
 			cstm.execute();
 			rs=cstm.getResultSet();
 			
-			
-			while(rs.next()){
-				
-			//	System.out.println(rs.getString("Produkt")+" "+rs.getString("namn")+" "+rs.getFloat("Provision")+" "+rs.getString("sluttid"));
-				
-				
-			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			rs.beforeFirst();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return rs;
 	
 	}
-	
-	
-	
 
 }
+
