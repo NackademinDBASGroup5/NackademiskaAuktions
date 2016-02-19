@@ -83,10 +83,18 @@ public class AuctionC implements Initializable {
 			}
 
 			tableView_curr.setItems(data);
+			
+			try {
+				rs.beforeFirst();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		});
 
 		tableView_curr.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol);
+		
 
 	}
 

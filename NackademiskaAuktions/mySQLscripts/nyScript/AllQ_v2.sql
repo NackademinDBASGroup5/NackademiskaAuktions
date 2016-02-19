@@ -66,25 +66,31 @@ ORDER BY kronor ASC;
 
 select * from aktivabud;
 
-
+DROP PROCEDURE datumintervall;
 -- 5
 DELIMITER //
 CREATE PROCEDURE datumintervall(IN start date, IN slut datetime)
 BEGIN
+
 SELECT Produkt, produkt.namn,max(bud.kronor)*(leverantör.provisionsprocent/100) AS 'Provision', sluttid FROM auktion
 INNER JOIN Produkt ON produkt.id=produkt
 INNER JOIN Leverantör ON leverantör.orgnummer=produkt.leverantör
 INNER JOIN Bud ON auktion.auktionsnummer=bud.auktion
 WHERE  auktion.sluttid>=start AND auktion.sluttid<=slut
-GROUP BY produkt ;
+GROUP BY produkt
+UNION ALL
+SELECT DISTINCT Produkt, produkt.namn,null,sluttid FROM Auktion
+INNER JOIN Produkt ON produkt.id=produkt
+WHERE NOT EXISTS(SELECT * FROM bud WHERE auktion.auktionsnummer=bud.auktion)
+AND auktion.sluttid>=start AND auktion.sluttid<=slut
+GROUP BY produkt;
 END //
 DELIMITER ;
 
 
-select * from produkt;
 
 -- drop procedure datumintervall;
-call datumintervall('2015-02-17', '2015-02-21 21:00:00');
+call datumintervall('2016-02-17', '2016-03-21 21:00:00');
 
 -- 6
 select * from auktion;
@@ -201,6 +207,10 @@ SELECT auktionsnummer,max(Bud)*(leverantör.provisionsprocent/100) AS 'Provision
 INNER JOIN Leverantör ON auktionshistorik.leverantör=leverantör.OrgNummer
 GROUP BY auktionshistorik.auktionsnummer;
 
-select * from provision WHERE month(sluttid) = 2;
+-- select * from provision WHERE month(sluttid) = 2;
 
-SELECT date_format(sluttid,'%b %Y') AS 'Månad', ROUND(sum(provision),2) AS 'Provision' FROM provision group by month(sluttid);
+-- SELECT date_format(sluttid,'%b %Y') AS 'Månad', ROUND(sum(provision),2) AS 'Provision' FROM provision group by month(sluttid);
+
+select * from auktion;
+
+select * FROM bud;
