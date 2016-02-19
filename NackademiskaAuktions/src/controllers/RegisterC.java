@@ -100,6 +100,7 @@ public class RegisterC implements Initializable {
 		ObservableList<Leverantor> levOptions = FXCollections.observableArrayList(ra.getLeverantorer());
 		supplierCombo.setItems(levOptions);
 		registerButton_product.setOnAction(e->{
+			if(isFilledProduct(supplierCombo.getSelectionModel().getSelectedItem(), productNameField.getText(), productDescriptArea.getText() )){
 			Produkt prod = new Produkt(supplierCombo.getSelectionModel().getSelectedItem().getOrgnummer(),productNameField.getText(), productDescriptArea.getText(), null);
 			boolean registered = rKund.registerProduktToDatabase(prod);
 			String success = "Ny produkt registrerad";
@@ -109,8 +110,10 @@ public class RegisterC implements Initializable {
 			}else{
 				warningMessage(fail);
 			}
+			}
 		});
 	}
+
 	public EventHandler<KeyEvent> numericValidation(final Integer max_Lengh) {
 	    return new EventHandler<KeyEvent>() {
 	        @Override
@@ -214,5 +217,22 @@ private boolean isFilledSupplier(TextField[] fields){
 		
 		return true;
 	}
+
+private boolean isFilledProduct(Leverantor selectedItem, String text, String text2) {
+	if (selectedItem == null){
+		warningMessage("Välj en leverantör");
+		return false;
+	}
+	
+	else if (text.equals("")){
+		warningMessage("Skriv in ett namn");
+		return false;
+	}
+	else if (text2.equals("")){
+		warningMessage("skriv en smärre uppsats som beskriver denna fantastiska produkt");
+		return false;
+	}
+	return true;
+}
 
 }
