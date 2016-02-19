@@ -33,7 +33,7 @@ public class Reports {
 		ArrayList<KundHistorik> kundList = new ArrayList<KundHistorik>();
 		try {
 			stm = connect.createStatement();
-			rset = stm.executeQuery("Select kund.*, SUM(vinnandebud) from auktionshistorik inner "
+			rset = stm.executeQuery("Select kund.*, vinnandebud from auktionshistorik inner "
 					+ "join kund on auktionshistorik.kund = kund.personnummer "
 					+ "inner join VunnaAuktioner on VunnaAuktioner.personnummer = kund.personnummer "
 					+ "group by kund.personnummer");
