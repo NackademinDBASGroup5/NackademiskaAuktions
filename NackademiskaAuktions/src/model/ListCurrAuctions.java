@@ -40,28 +40,12 @@ public class ListCurrAuctions {
 			cstm.execute();
 			rs=cstm.getResultSet();
 			
-			
-			while(rs.next()){
-				
-			//	System.out.println(rs.getString("Produkt")+" "+rs.getString("namn")+" "+rs.getFloat("Provision")+" "+rs.getString("sluttid"));
-				
-				
-			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			rs.beforeFirst();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return rs;
 	
 	}
-	
-	
-	
 
 }
+
