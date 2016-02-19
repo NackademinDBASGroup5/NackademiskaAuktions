@@ -73,7 +73,9 @@ public class Main extends Application {
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
 		dialog.setTitle("Login");
 		dialog.setHeaderText("");
-
+		dialog.setOnCloseRequest(e->{
+			System.exit(0);
+		});
 
 		ButtonType loginButtonType = new ButtonType("Login", ButtonData.OK_DONE);
 		dialog.getDialogPane().getButtonTypes().addAll(loginButtonType);
