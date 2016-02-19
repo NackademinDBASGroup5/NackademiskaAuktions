@@ -3,11 +3,7 @@ package testcontrollers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.Auktion;
-import application.Historik;
-import application.Kund;
 import application.KundHistorik;
-import application.Main;
 import application.Provision;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;

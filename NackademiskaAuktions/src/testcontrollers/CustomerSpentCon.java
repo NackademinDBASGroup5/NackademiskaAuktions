@@ -3,18 +3,12 @@ package testcontrollers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.Auktion;
-import application.Historik;
-import application.Kund;
 import application.KundHistorik;
-import application.Main;
-import application.Provision;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;

@@ -4,7 +4,6 @@ package testcontrollers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import application.Main;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,16 +21,8 @@ public class IntegratedMenuCon implements Initializable {
 
 	@FXML
 	Button regKundButton, regProdButton, regLevButton, addAuctionButton, auctionListButton, auctionListNEWButton,
-			auctionListBidsButton, reportButton, customerBoughtButton, provisionButton, ongoingAuctButton, finishedAuctButton,
-			quitButton;
-
-	// @FXML
-	// Button registerButton, addAuctionButton, auctionListButton, quitButton,
-	// reportButton;
-	// Pane register = Pane("Register.fxml");
-	// Scene auctions = loadScene("Auction.fxml");
-	// Scene createAuction = loadScene("NewAuction.fxml");
-	// Scene reports = loadScene("Report.fxml");
+			auctionListBidsButton, reportButton, customerBoughtButton, provisionButton, ongoingAuctButton,
+			finishedAuctButton, quitButton;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -49,24 +40,17 @@ public class IntegratedMenuCon implements Initializable {
 		});
 
 		addAuctionButton.setOnAction(e -> {
-			// Main.mainStage.setScene(loadScene("NewAuction.fxml"));
 			borderpane.setCenter(loadPane("registreraAuktion.fxml"));
 		});
-		/*
-		 * auctionListButton.setOnAction(e -> { //
-		 * Main.mainStage.setScene(loadScene("Auction.fxml"));
-		 * borderpane.setCenter(loadPane("NewAuction.fxml")); });
-		 */
 
 		auctionListButton.setOnAction(e -> {
 			borderpane.setCenter(loadPane("listAuctions.fxml"));
 		});
 
-		
 		auctionListBidsButton.setOnAction(e -> {
 			borderpane.setCenter(loadPane("listBids.fxml"));
 		});
-		
+
 		reportButton.setOnAction(e -> {
 			borderpane.setCenter(loadPane("Reports.fxml"));
 		});
@@ -85,26 +69,10 @@ public class IntegratedMenuCon implements Initializable {
 
 	}
 
-	private Scene loadScene(String fileName) {
-		URL location = this.getClass().getResource("/view/" + fileName);
-		FXMLLoader loader = new FXMLLoader(location);
-		try {
-			Parent root = loader.load();
-			Scene scene = new Scene(root);
-			return scene;
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	private Pane loadPane(String fileName) {
 		URL location = this.getClass().getResource("/testview/" + fileName);
 		FXMLLoader loader = new FXMLLoader(location);
 		try {
-			// Parent root = loader.load();
-			// Scene scene = new Scene(root);
 			Pane pane = loader.load();
 			return pane;
 		} catch (IOException e) {
