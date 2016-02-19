@@ -42,21 +42,22 @@ select * from auktion;
 
 -- ------------------------------------------
 /*testad funkar*/
+drop procedure datumintervall;
 DELIMITER //
-CREATE PROCEDURE datumintervall(IN start date, IN slut datetime)
+CREATE PROCEDURE datumintervall(IN startTiden date, IN slutTiden datetime)
 BEGIN
 
 SELECT Produkt, produkt.namn,max(bud.kronor)*(leverantör.provisionsprocent/100) AS 'Provision', sluttid FROM auktion
 INNER JOIN Produkt ON produkt.id=produkt
 INNER JOIN Leverantör ON leverantör.orgnummer=produkt.leverantör
 INNER JOIN Bud ON auktion.auktionsnummer=bud.auktion
-WHERE  auktion.sluttid>=start AND auktion.sluttid<=slut
+WHERE  auktion.sluttid BETWEEN startTiden AND slutTiden
 GROUP BY produkt
 UNION ALL
 SELECT DISTINCT Produkt, produkt.namn,null,sluttid FROM Auktion
 INNER JOIN Produkt ON produkt.id=produkt
 WHERE NOT EXISTS(SELECT * FROM bud WHERE auktion.auktionsnummer=bud.auktion)
-AND auktion.sluttid>=start AND auktion.sluttid<=slut
+AND auktion.sluttid BETWEEN startTiden AND slutTiden
 GROUP BY produkt;
 END //
 DELIMITER ;
