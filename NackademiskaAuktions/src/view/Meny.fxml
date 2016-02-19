@@ -1,23 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenuC">
    <children>
-      <Button fx:id="registerButton" layoutX="53.0" layoutY="162.0" mnemonicParsing="false" text="Registrera användare" />
-      <Button fx:id="addAuctionButton" layoutX="207.0" layoutY="162.0" mnemonicParsing="false" text="Lägg till auktion" />
-      <Button fx:id="auctionListButton" layoutX="332.0" layoutY="162.0" mnemonicParsing="false" text="Auktionslista" />
-      <Button fx:id="quitButton" layoutX="258.0" layoutY="288.0" mnemonicParsing="false" text="Avsluta" />
-      <Button fx:id="reportButton" layoutX="451.0" layoutY="162.0" mnemonicParsing="false" text="Rapporter" />
-      <Text layoutX="25.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gunnars dilemma" wrappingWidth="550.13671875">
+      <Button fx:id="registerButton" layoutX="21.0" layoutY="160.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="84.0">
+         <graphic>
+            <ImageView fitHeight="95.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../bin/images/addStuff.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <tooltip>
+            <Tooltip text="Registrera kund, leverantör eller produkt" />
+         </tooltip></Button>
+      <Button fx:id="addAuctionButton" layoutX="166.0" layoutY="160.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="95.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../bin/images/addAuction.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <tooltip>
+            <Tooltip text="Registrera en ny auktion" />
+         </tooltip></Button>
+      <Button fx:id="auctionListButton" layoutX="311.0" layoutY="160.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="95.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../bin/images/Auctionlist.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <tooltip>
+            <Tooltip text="Lista auktioner" />
+         </tooltip></Button>
+      <Button fx:id="reportButton" layoutX="456.0" layoutY="160.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="95.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../bin/images/reports.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <tooltip>
+            <Tooltip text="Rapporter" />
+         </tooltip></Button>
+      <Button fx:id="quitButton" layoutX="216.0" layoutY="276.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="169.0" text="Avsluta">
+         <graphic>
+            <ImageView fitHeight="42.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../bin/images/exit.png" />
+               </image>
+            </ImageView>
+         </graphic>
          <font>
-            <Font size="63.0" />
-         </font>
-      </Text>
+            <Font size="24.0" />
+         </font></Button>
+      <ImageView fitHeight="142.0" fitWidth="500.0" layoutX="84.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../bin/images/Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
