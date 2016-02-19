@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -21,13 +22,14 @@ import model.ListCurrAuctions;
 public class AuctionC implements Initializable {
 
 	@FXML
-	DatePicker fromDatePicker_curr, toDatePicker_curr, fromDatePicker_hist, toDatePicker_hist;
+	DatePicker fromDatePicker_curr, toDatePicker_curr;
 
 	@FXML
-	Button listButton_curr, listAllButton_curr, listButton_hist, listAllButton_hist, backButton_curr, backButton_hist;
+	Button listButton_curr, listButton_bid, backButton;
 
 	@FXML
-	TableView tableView_hist;
+	ComboBox<Auktion> auctionCombobox;
+	
 	@FXML
 	TableView<Auktion> tableView_curr;
 
@@ -54,14 +56,11 @@ public class AuctionC implements Initializable {
 
 		ListCurrAuctions currAuctions = new ListCurrAuctions();
 
-		backButton_curr.setOnAction(a -> {
+		backButton.setOnAction(a -> {
 			Main.mainStage.setScene(Main.mainScene);
 		});
 
-		backButton_hist.setOnAction(a -> {
-			Main.mainStage.setScene(Main.mainScene);
-		});
-
+	
 		listButton_curr.setOnAction(a -> {
 
 			data.removeAll(data);
