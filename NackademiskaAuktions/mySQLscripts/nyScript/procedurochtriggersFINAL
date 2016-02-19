@@ -103,8 +103,7 @@ INSERT INTO bud (Auktion, Kronor, kund, tid) VALUES(8,500,198802080112, now());
 DELETe from auktion where auktionsnummer = 8;
 
 -- -------------------------------------
-
-/*ska fixas*/
+-- ska funka
 DROP TRIGGER IF EXISTS auktionTasBort;
 DELIMITER //
 CREATE TRIGGER AuktionTasbort BEFORE DELETE ON
@@ -117,27 +116,27 @@ WHERE NOT EXISTS(SELECT * FROM Bud WHERE auktion = auktion.auktionsnummer)
 HAVING auktionsnummer=Old.auktionsnummer) THEN
 
 insert into auktionshistorik(leverantör,kund, auktionsnummer, produktnamn, Produktregistreringsdatum,Produktbeskrivning, bild, utropspris, acceptpris, starttid, sluttid, bud, budtid)
-select  leverantör, personnumer, auktion, namn, registreringsdatum,beskrivning, bild, registreringsdatum, auktionsnummer, utropspris, AcceptPris, Starttid, sluttid, null, null, null from produkt
+select  produkt.leverantör, kund.personnummer, auktion.auktionsnummer, produkt.namn, produkt.registreringsdatum,produkt.beskrivning, produkt.bild, auktion.utropspris, auktion.AcceptPris, auktion.Starttid, auktion.sluttid, bud.kronor, bud.tid from produkt
  inner join auktion on auktion.produkt = produkt.id
- where auktion.auktionsnummer = Old.auktionsnummer;
+ inner join bud on bud.auktion = auktion.auktionsnummer
+ inner join kund on kund.personnummer = bud.kund
+ where auktion.auktionsnummer = old.auktionsnummer;
 
 ELSE 
 
-
 insert into auktionshistorik(leverantör,kund, auktionsnummer, produktnamn, Produktregistreringsdatum,Produktbeskrivning, bild, utropspris, acceptpris, starttid, sluttid, bud, budtid)
- select id, leverantör, namn, beskrivning, bild, registreringsdatum, auktionsnummer, utropspris, AcceptPris, Starttid, sluttid, kronor, kund, tid from produkt
+select  produkt.leverantör, kund.personnummer, auktion.auktionsnummer, produkt.namn, produkt.registreringsdatum,produkt.beskrivning, produkt.bild, auktion.utropspris, auktion.AcceptPris, auktion.Starttid, auktion.sluttid, null, null from produkt
  inner join auktion on auktion.produkt = produkt.id
  inner join bud on bud.auktion = auktion.auktionsnummer
- where auktion.auktionsnummer = Old.auktionsnummer;
+ inner join kund on kund.personnummer = bud.kund
+ where auktion.auktionsnummer = old.auktionsnummer;
 
 DELETE FROM Produkt where produkt.id = Old.produkt;
 
 END IF;
-
-
-
  
  END //
+ 
 DELIMITER ;
 
 
