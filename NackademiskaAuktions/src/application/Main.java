@@ -32,17 +32,18 @@ public class Main extends Application {
 	
 	public static Stage mainStage;
 	public static Scene mainScene;
-	public static String username = "simon";
-	public static String password = "abc123";
+	public static String username;
+	public static String password;
+	//public static String username = "simon";
+	//public static String password = "abc123";
 	
 	@Override
 	public void start(Stage primaryStage) {
-		//login();
+		login();
 		try {
 			
 			mainStage = primaryStage;
-			mainStage.setResizable(true);
-			//mainStage.setResizable(false);
+			mainStage.setResizable(false);
 			mainScene = firstScene();
 			mainStage.setScene(mainScene);
 			mainStage.show();
@@ -56,9 +57,9 @@ public class Main extends Application {
 	private Scene firstScene() {
 
 		// Testar integrerar vy
-		URL location = this.getClass().getResource("/testview/IntegratedMenu.fxml");
+		// URL location = this.getClass().getResource("/testview/IntegratedMenu.fxml");
 		// Orginal
-		// URL location = this.getClass().getResource("/view/Meny.fxml");
+		 URL location = this.getClass().getResource("/view/Meny.fxml");
 
 		FXMLLoader loader = new FXMLLoader(location);
 		try {
@@ -80,9 +81,6 @@ public class Main extends Application {
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
 		dialog.setTitle("Login");
 		dialog.setHeaderText("");
-		dialog.setOnCloseRequest(e->{
-			System.exit(0);
-		});
 
 		ButtonType loginButtonType = new ButtonType("Login", ButtonData.OK_DONE);
 		dialog.getDialogPane().getButtonTypes().addAll(loginButtonType);
