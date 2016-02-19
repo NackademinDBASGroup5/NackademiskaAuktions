@@ -105,10 +105,11 @@ public class RegisterAuktion {
 			e2.printStackTrace();
 		}
 		try {
+			if (acceptpris > 0){
 			connect.setAutoCommit(false);
 			PreparedStatement prepstm = connect.prepareStatement("call startAuktion (?, ?, ?, ?, ?)");
 			prepstm.setInt(1, selectedItem.getId());
-			prepstm.setInt(2, utropspris);
+			prepstm.setInt(2, utropspris);	
 			prepstm.setInt(3, acceptpris);
 			if (d1.compareTo(d2) <0 && d1.compareTo(d3) <1)
 			prepstm.setString(4, currDate);
@@ -117,9 +118,27 @@ public class RegisterAuktion {
 			prepstm.setString(5, localDate2 +" "+endTime);
 			
 			int a = prepstm.executeUpdate();
+			
 			if (a == 1) {
 				connect.commit();
 				return true;
+			}}else {
+				connect.setAutoCommit(false);
+				PreparedStatement prepstm = connect.prepareStatement("call startAuktion (?, ?, null, ?, ?)");
+				prepstm.setInt(1, selectedItem.getId());
+				prepstm.setInt(2, utropspris);	
+				if (d1.compareTo(d2) <0 && d1.compareTo(d3) <1)
+				prepstm.setString(3, currDate);
+				else 
+					prepstm.setString(3, localDate+" "+startTime);
+				prepstm.setString(4, localDate2 +" "+endTime);
+				
+				int a = prepstm.executeUpdate();
+				
+				if (a == 1) {
+					connect.commit();
+					return true;
+			}
 			}
 		} catch (MySQLIntegrityConstraintViolationException e1) {
 			// TODO Auto-generated catch block

@@ -1,6 +1,8 @@
 package controllers;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import application.Leverantor;
@@ -43,6 +45,8 @@ public class NewAuctionC implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		
 		startPriceField.addEventFilter(KeyEvent.KEY_TYPED, numericValidation(10));
 		acceptPriceField.addEventFilter(KeyEvent.KEY_TYPED, numericValidation(10));
 
@@ -63,11 +67,19 @@ public class NewAuctionC implements Initializable {
 			productCombo.setDisable(false);
 		});
 		submitButton.setOnAction(e -> {
+			int accept = 0;
+			try {
+				accept = Integer.parseInt(acceptPriceField.getText());
+				
+			} catch ( NumberFormatException e1) {
+				accept = -1;
+			}
 			
 			// check if field not null or empty
+			if (isFilledAuction(supplierCombo.getSelectionModel().getSelectedItem() ,productCombo.getSelectionModel().getSelectedItem(), startPriceField, toDatePicker.getValue(), fromDatePicker.getValue(), startTimeCombo.getValue(), endTimeCombo.getValue())){
 			if (endTimeCombo.getSelectionModel().getSelectedItem() != null) {
 				boolean register = regA.registerToDatabase(productCombo.getSelectionModel().getSelectedItem(),
-						Integer.parseInt(startPriceField.getText()), Integer.parseInt(acceptPriceField.getText()),
+						Integer.parseInt(startPriceField.getText()), accept,
 						fromDatePicker.getValue().toString(), toDatePicker.getValue().toString(),
 						startTimeCombo.getSelectionModel().getSelectedItem(), endTimeCombo.getSelectionModel().getSelectedItem());
 				String success = "Ny Auktion registrerad";
@@ -85,6 +97,7 @@ public class NewAuctionC implements Initializable {
 					warningMessage(fail);
 				}
 			}
+			}
 		});
 
 		cancelButton.setOnAction(e -> {
@@ -92,6 +105,48 @@ public class NewAuctionC implements Initializable {
 		});
 
 	}
+
+
+	private boolean isFilledAuction(Leverantor selectedItem, Produkt selectedItem2, TextField startPriceField2,
+			LocalDate value, LocalDate value2, String value3, String value4) {
+		if(selectedItem==null){
+			String fail = "Välj en leverantör";
+			warningMessage(fail);
+			return false;
+		}
+		else if(selectedItem2==null){
+			String fail = "Välj en produkt";
+			warningMessage(fail);
+			return false;
+		}
+		else if(startPriceField2.getText().equals("")){
+			String fail = "Sätt ett utropspris";
+			warningMessage(fail);
+			return false;
+		}
+		else if(value==null){
+			String fail = "Sätt ett slutdatum";
+			warningMessage(fail);
+			return false;
+		}
+		else if(value2==null){
+			String fail = "Sätt ett startdatum";
+			warningMessage(fail);
+			return false;
+		}
+		else if(value3==null){
+			String fail = "Sätt ett klockslag för start";
+			warningMessage(fail);
+			return false;
+		}
+		else if(value4==null){
+			String fail = "Sätt ett klockslag för slut";
+			warningMessage(fail);
+			return false;
+		}
+		return true;
+	}
+
 
 	public EventHandler<KeyEvent> numericValidation(final Integer max_Lengh) {
 		return new EventHandler<KeyEvent>() {
@@ -119,5 +174,7 @@ public class NewAuctionC implements Initializable {
 		alert.setHeaderText(s);
 		alert.showAndWait();
 	}
+	
+	
 
 }
