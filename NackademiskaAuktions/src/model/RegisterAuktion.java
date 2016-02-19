@@ -15,6 +15,7 @@ import java.util.Date;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import application.Leverantor;
+import application.Main;
 import application.Produkt;
 import javafx.scene.image.Image;
 
@@ -26,7 +27,7 @@ public class RegisterAuktion {
 
 	public RegisterAuktion() {
 		try {
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "simon", "abc123");
+			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", Main.username, Main.password);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

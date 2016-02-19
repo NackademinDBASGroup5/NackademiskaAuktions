@@ -7,10 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import application.Kund;
 import application.KundHistorik;
+import application.Main;
 import application.Provision;
-import javafx.util.Callback;
 
 public class Reports {
 	private Connection connect;
@@ -20,7 +19,7 @@ public class Reports {
 	public Reports() {
 
 		try {
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "simon", "abc123");
+			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", Main.username, Main.password);
 
 
 		} catch (SQLException e) {
