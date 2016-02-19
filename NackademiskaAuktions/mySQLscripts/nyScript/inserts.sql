@@ -56,3 +56,18 @@ INSERT INTO bud (Auktion, Kronor, kund, tid) VALUES(3,10,198802080112, '2015-02-
 INSERT INTO bud (Auktion, Kronor, kund, tid) VALUES(3,25,194503680748, '2015-02-17 22:30:50');
 
 INSERT INTO bud (Auktion, Kronor, kund, tid) VALUES(5,2,196808190697, '2015-02-17 22:30:50');
+
+
+INSERT INTO auktionshistorik(leverantör,kund, auktionsnummer, produktnamn, Produktregistreringsdatum,Produktbeskrivning
+							, bild, utropspris, acceptpris, starttid, sluttid, bud, budtid) 
+                            VALUES(1198620963, 198802080112, 600, 'Stol', '2014-10-11 21:00:00', 'En auberginfärgad matsalsstol',
+                            null, 1, 200, '2014-10-20 21:00:00', '2014-11-01 12:30:00', 100, '2014-10-30 10:54:06');
+
+INSERT INTO auktionshistorik(leverantör,kund, auktionsnummer, produktnamn, Produktregistreringsdatum,Produktbeskrivning
+							, bild, utropspris, acceptpris, starttid, sluttid, bud, budtid) 
+                            VALUES(1198620963, 194503680748, 600, 'Stol', '2014-10-11 21:00:00', 'En auberginfärgad matsalsstol',
+                            null, 1, 200, '2014-10-20 21:00:00', '2014-11-01 12:30:00', 200, '2014-10-30 10:54:06');
+INSERT INTO auktionshistorik(leverantör,kund, auktionsnummer, produktnamn, Produktregistreringsdatum,Produktbeskrivning
+							, bild, utropspris, acceptpris, starttid, sluttid, bud, budtid) 
+                            VALUES(8639782087, 198802080112, 600, 'Pingis', '2014-10-30 21:00:00', 'Legendariska racket som Kjell-Arne smashade ut Hökislaget i pingis-SM ´87',
+                            null, 500, 1500, '2014-10-23 21:00:00', '2014-11-10 12:30:00', 1500, '2014-10-30 19:10:08');
