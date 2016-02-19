@@ -36,7 +36,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		login();
+		if (login());{
 		try {
 			
 			mainStage = primaryStage;
@@ -48,6 +48,7 @@ public class Main extends Application {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+		}
 		}
 	}
 	
@@ -69,13 +70,10 @@ public class Main extends Application {
 		launch(args);
 	}
 	
-	private void login(){
+	private boolean login(){
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
 		dialog.setTitle("Login");
 		dialog.setHeaderText("");
-		dialog.setOnCloseRequest(e->{
-			System.exit(0);
-		});
 
 		ButtonType loginButtonType = new ButtonType("Login", ButtonData.OK_DONE);
 		dialog.getDialogPane().getButtonTypes().addAll(loginButtonType);
@@ -114,14 +112,19 @@ public class Main extends Application {
 		Optional<Pair<String, String>> result = dialog.showAndWait();
 
 		result.ifPresent(usernamePassword -> {
-			if (access(usernamePassword.getKey(),usernamePassword.getValue())){
-				
+		
 				 Main.username = usernamePassword.getKey();
 				    Main.password = usernamePassword.getValue();
+		
+		});
+		if (access(Main.username, Main.password)){
+			return true;
+		    
 			}
 			else
-				login();
-		});
+				System.exit(0);
+			//	login();
+		return false;
 	}
 	
 	private boolean access(String user, String pass){
