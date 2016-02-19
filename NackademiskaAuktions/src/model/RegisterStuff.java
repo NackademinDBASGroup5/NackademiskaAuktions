@@ -11,6 +11,7 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 
 import application.Kund;
 import application.Leverantor;
+import application.Main;
 import application.Produkt;
 
 
@@ -21,7 +22,7 @@ public class RegisterStuff {
 	
 	public RegisterStuff(){
 		try {
-			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "simon", "abc123");
+			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", Main.username, Main.password);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

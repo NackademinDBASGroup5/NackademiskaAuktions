@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import application.Auktion;
 import application.BudHistorik;
+import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -31,7 +32,7 @@ public class ListCurrAuctions {
 	public ListCurrAuctions() {
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/auktion", "simon", "abc123");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/auktion", Main.username, Main.password);
 
 			cstm = conn.prepareCall("{CALL datumintervall(?,?)}");
 			stm = conn.createStatement();
