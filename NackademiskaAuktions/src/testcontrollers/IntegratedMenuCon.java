@@ -21,9 +21,9 @@ public class IntegratedMenuCon implements Initializable {
 	private BorderPane borderpane;
 
 	@FXML
-	Button regKundButton, regProdButton, regLevButton,addAuctionButton,
-	auctionListButton, quitButton, reportButton,
-	ongoingAuctButton,finishedAuctButton;
+	Button regKundButton, regProdButton, regLevButton, addAuctionButton, auctionListButton, auctionListNEWButton,
+			auctionListBidsButton, reportButton, customerBoughtButton, provisionButton, ongoingAuctButton, finishedAuctButton,
+			quitButton;
 
 	// @FXML
 	// Button registerButton, addAuctionButton, auctionListButton, quitButton,
@@ -52,20 +52,31 @@ public class IntegratedMenuCon implements Initializable {
 			// Main.mainStage.setScene(loadScene("NewAuction.fxml"));
 			borderpane.setCenter(loadPane("registreraAuktion.fxml"));
 		});
-/*
-		auctionListButton.setOnAction(e -> {
-			// Main.mainStage.setScene(loadScene("Auction.fxml"));
-			borderpane.setCenter(loadPane("NewAuction.fxml"));
-		});*/
+		/*
+		 * auctionListButton.setOnAction(e -> { //
+		 * Main.mainStage.setScene(loadScene("Auction.fxml"));
+		 * borderpane.setCenter(loadPane("NewAuction.fxml")); });
+		 */
 
 		auctionListButton.setOnAction(e -> {
-			// Main.mainStage.setScene(loadScene("Report.fxml"));
 			borderpane.setCenter(loadPane("listAuctions.fxml"));
+		});
+
+		
+		auctionListBidsButton.setOnAction(e -> {
+			borderpane.setCenter(loadPane("listBids.fxml"));
 		});
 		
 		reportButton.setOnAction(e -> {
-			// Main.mainStage.setScene(loadScene("Report.fxml"));
 			borderpane.setCenter(loadPane("Reports.fxml"));
+		});
+
+		customerBoughtButton.setOnAction(e -> {
+			borderpane.setCenter(loadPane("ReportCustomerSpent.fxml"));
+		});
+
+		provisionButton.setOnAction(e -> {
+			borderpane.setCenter(loadPane("ReportProvision.fxml"));
 		});
 
 		quitButton.setOnAction(e -> {

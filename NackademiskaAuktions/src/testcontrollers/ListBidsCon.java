@@ -21,13 +21,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.ListCurrAuctions;
 
-public class ListAuctionCon implements Initializable {
+public class ListBidsCon implements Initializable {
 
 	@FXML
-	DatePicker fromDatePicker_curr, toDatePicker_curr;
-
-	@FXML
-	Button listButton_curr;
+	Button listButton_bid;
 
 	@FXML
 	ComboBox<Auktion> auctionCombobox;
@@ -72,40 +69,19 @@ public class ListAuctionCon implements Initializable {
 
 		auktionslista = currAuctions.createAuctionsObj();
 
-		//auctionCombobox.getItems().addAll(auktionslista);
+		auctionCombobox.getItems().addAll(auktionslista);
 
-		listButton_curr.setOnAction(a -> {
-
-			data.clear();
+		listButton_bid.setOnAction(e -> {
+			budData.clear();
 			tableView_curr.getColumns().clear();
 			tableView_curr.getItems().clear();
 
-			rs = currAuctions.getAuctionsIntervall(fromDatePicker_curr.getValue().toString(),
-					toDatePicker_curr.getValue().toString());
+			budData = currAuctions.setPreparedStm(auctionCombobox.getValue().getAuktionsnummer());
 
-			try {
-				while (rs.next()) {
-
-					data.add(new Auktion(rs.getString("produkt"), rs.getString("namn"), rs.getFloat("provision"),
-							rs.getString("sluttid")));
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			tableView_curr.setItems(data);
-			tableView_curr.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol);
-
-			try {
-				rs.beforeFirst();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			tableView_curr.setItems(budData);
+			tableView_curr.getColumns().addAll(firstBidCol, secondBidCol, thirdBidCol);
 
 		});
-
 
 	}
 
