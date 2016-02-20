@@ -66,7 +66,7 @@ public class ListCurrAuctions {
 		try {
 
 			pstm = conn.prepareStatement(
-					"SELECT kronor, concat(kund.förnamn,' ',kund.efternamn) AS 'Namn', tid FROM BUD INNER JOIN Kund ON Kund.personnummer=bud.kund WHERE auktion=? ORDER BY Kronor ASC");
+					"SELECT kronor, concat(kund.förnamn,' ',kund.efternamn) AS 'Namn', tid FROM BUD INNER JOIN Kund ON Kund.personnummer=bud.kund WHERE auktion=? ORDER BY Kronor DESC");
 			pstm.setInt(1, auktionsNr);
 
 			rs3 = pstm.executeQuery();
