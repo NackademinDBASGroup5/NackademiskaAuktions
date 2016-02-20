@@ -94,7 +94,6 @@ public class RegisterC implements Initializable {
 				}
 			}
 			
-			
 		});
 		ObservableList<Leverantor> levOptions = FXCollections.observableArrayList(rKund.getLeverantorer());
 		supplierCombo.setItems(levOptions);

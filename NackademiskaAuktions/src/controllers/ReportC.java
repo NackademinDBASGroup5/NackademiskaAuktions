@@ -3,7 +3,7 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.Auktion;
+import application.AuktionsData;
 import application.Historik;
 import application.Kund;
 import application.KundHistorik;

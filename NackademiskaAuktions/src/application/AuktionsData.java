@@ -2,26 +2,26 @@ package application;
 
 import java.sql.Date;
 
-public class Auktion {
+public class AuktionsData {
 	
-	int auktionsnummer;
-	String namn;
-	Produkt produkt;
-	int utropspris;
-	int acceptpris;
-	Date starttid;
-	Date sluttid;
-	String produkt_;
-	String provision_;
-	String namn_;
-	String sluttid_;
-	float provision;
+	private int auktionsnummer;
+	private String namn;
+	private Produkt produkt;
+	private int utropspris;
+	private int acceptpris;
+	private Date starttid;
+	private Date sluttid;
+	private String produkt_;
+	private String provision_;
+	private String namn_;
+	private String sluttid_;
+	private float provision;
 	
-	public Auktion(){
+	public AuktionsData(){
 		
 	}
 
-	public Auktion(int auktionsnummer, Produkt produkt, int utropspris, int acceptpris, Date starttid, Date sluttid) {
+	public AuktionsData(int auktionsnummer, Produkt produkt, int utropspris, int acceptpris, Date starttid, Date sluttid) {
 		super();
 		this.auktionsnummer = auktionsnummer;
 		this.produkt = produkt;
@@ -32,7 +32,7 @@ public class Auktion {
 	}
 	
 	
-	public Auktion(String produkt, String namn, float provision,String sluttidString){
+	public AuktionsData(String produkt, String namn, float provision,String sluttidString){
 	
 		produkt_= produkt;
 		namn_ = namn;

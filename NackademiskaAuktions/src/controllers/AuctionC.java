@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import application.Auktion;
+import application.AuktionsData;
 import application.BudHistorik;
 import application.Main;
 import javafx.collections.FXCollections;
@@ -31,30 +31,30 @@ public class AuctionC implements Initializable {
 	Button listButton_curr, listButton_bid, backButton;
 
 	@FXML
-	ComboBox<Auktion> auctionCombobox;
+	ComboBox<AuktionsData> auctionCombobox;
 
 	@FXML
 	TableView tableView_curr;
 
-	ArrayList<Auktion> auktionslista = new ArrayList<>();
+	ArrayList<AuktionsData> auktionslista = new ArrayList<>();
 
-	ObservableList<Auktion> data = FXCollections.observableArrayList();
+	ObservableList<AuktionsData> data = FXCollections.observableArrayList();
 	ObservableList<BudHistorik> budData = FXCollections.observableArrayList();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		TableColumn<Auktion, String> firstCol = new TableColumn<Auktion, String>("Produkt");
-		firstCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("produkt_"));
+		TableColumn<AuktionsData, String> firstCol = new TableColumn<AuktionsData, String>("Produkt");
+		firstCol.setCellValueFactory(new PropertyValueFactory<AuktionsData, String>("produkt_"));
 
-		TableColumn<Auktion, String> secondCol = new TableColumn<Auktion, String>("Namn");
-		secondCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("namn_"));
+		TableColumn<AuktionsData, String> secondCol = new TableColumn<AuktionsData, String>("Namn");
+		secondCol.setCellValueFactory(new PropertyValueFactory<AuktionsData, String>("namn_"));
 
-		TableColumn<Auktion, String> thirdCol = new TableColumn<Auktion, String>("Provision");
-		thirdCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("provision_"));
+		TableColumn<AuktionsData, String> thirdCol = new TableColumn<AuktionsData, String>("Provision");
+		thirdCol.setCellValueFactory(new PropertyValueFactory<AuktionsData, String>("provision_"));
 
-		TableColumn<Auktion, String> forthCol = new TableColumn<Auktion, String>("Sluttid");
-		forthCol.setCellValueFactory(new PropertyValueFactory<Auktion, String>("sluttid_"));
+		TableColumn<AuktionsData, String> forthCol = new TableColumn<AuktionsData, String>("Sluttid");
+		forthCol.setCellValueFactory(new PropertyValueFactory<AuktionsData, String>("sluttid_"));
 		forthCol.setPrefWidth(125);
 
 		TableColumn<BudHistorik, Integer> firstBidCol = new TableColumn<>("Bud");

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import application.Auktion;
+import application.AuktionsData;
 import application.BudHistorik;
 import application.Main;
 import javafx.collections.FXCollections;
@@ -26,7 +26,7 @@ public class ListCurrAuctions {
 	String _from;
 	String _to;
 	Connection conn;
-	ArrayList<Auktion> auktionslista = new ArrayList<>();
+	ArrayList<AuktionsData> auktionslista = new ArrayList<>();
 	ObservableList<BudHistorik> budData = FXCollections.observableArrayList();
 
 	public ListCurrAuctions() {
@@ -46,11 +46,11 @@ public class ListCurrAuctions {
 
 	}
 
-	public ArrayList<Auktion> createAuctionsObj() {
+	public ArrayList<AuktionsData> createAuctionsObj() {
 
 		try {
 			while (rs2.next()) {
-				Auktion temp = new Auktion();
+				AuktionsData temp = new AuktionsData();
 				temp.setAuktionsnummer(rs2.getInt("auktionsnummer"));
 				temp.setNamn(rs2.getString("namn"));
 				auktionslista.add(temp);
@@ -102,8 +102,8 @@ public class ListCurrAuctions {
 
 	}
 
-	public ArrayList<Auktion> getAuctionsIntervall(String from, String to) {
-		ArrayList<Auktion> auktionData = new ArrayList<Auktion>();
+	public ArrayList<AuktionsData> getAuctionsIntervall(String from, String to) {
+		ArrayList<AuktionsData> auktionData = new ArrayList<AuktionsData>();
 		try {
 			cstm.setString(1, from);
 			cstm.setString(2, to + " 23:59:59");
@@ -112,7 +112,7 @@ public class ListCurrAuctions {
 			try {
 				while (rs.next()) {
 
-					auktionData.add(new Auktion(rs.getString("produkt"), rs.getString("namn"), rs.getFloat("provision"),
+					auktionData.add(new AuktionsData(rs.getString("produkt"), rs.getString("namn"), rs.getFloat("provision"),
 							rs.getString("sluttid")));
 				}
 			} catch (Exception e) {
