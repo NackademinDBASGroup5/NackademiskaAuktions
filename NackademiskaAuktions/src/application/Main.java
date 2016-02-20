@@ -36,8 +36,6 @@ public class Main extends Application {
 	public static Scene mainScene;
 	public static String username;
 	public static String password;
-	//public static String username = "simon";
-	//public static String password = "abc123";
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -59,9 +57,6 @@ public class Main extends Application {
 	
 	private Scene firstScene() {
 
-		// Testar integrerar vy
-		// URL location = this.getClass().getResource("/testview/IntegratedMenu.fxml");
-		// Orginal
 		 URL location = this.getClass().getResource("/view/Meny.fxml");
 
 		FXMLLoader loader = new FXMLLoader(location);
@@ -132,9 +127,10 @@ public class Main extends Application {
 		    
 			}
 			else
-				warningMessage("Felaktigt användarnamn/lösenord.");
+			{	warningMessage("Felaktigt användarnamn/lösenord.");
+				login();
 				//System.exit(0);
-			login();
+			}
 		return false;
 	}
 	

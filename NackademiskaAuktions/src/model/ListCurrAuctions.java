@@ -102,18 +102,28 @@ public class ListCurrAuctions {
 
 	}
 
-	public ResultSet getAuctionsIntervall(String from, String to) {
-
+	public ArrayList<Auktion> getAuctionsIntervall(String from, String to) {
+		ArrayList<Auktion> auktionData = new ArrayList<Auktion>();
 		try {
 			cstm.setString(1, from);
 			cstm.setString(2, to + " 23:59:59");
 			cstm.execute();
 			rs = cstm.getResultSet();
+			try {
+				while (rs.next()) {
+
+					auktionData.add(new Auktion(rs.getString("produkt"), rs.getString("namn"), rs.getFloat("provision"),
+							rs.getString("sluttid")));
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return rs;
+		return auktionData;
 
 	}
 

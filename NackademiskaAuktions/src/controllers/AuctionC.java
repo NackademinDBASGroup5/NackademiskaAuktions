@@ -1,8 +1,6 @@
 package controllers;
 
 import java.net.URL;
-import java.sql.CallableStatement;
-import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -39,9 +37,6 @@ public class AuctionC implements Initializable {
 	TableView tableView_curr;
 
 	ArrayList<Auktion> auktionslista = new ArrayList<>();
-
-	CallableStatement cstm = null;
-	ResultSet rs = null;
 
 	ObservableList<Auktion> data = FXCollections.observableArrayList();
 	ObservableList<BudHistorik> budData = FXCollections.observableArrayList();
@@ -87,29 +82,28 @@ public class AuctionC implements Initializable {
 			tableView_curr.getColumns().clear();
 			tableView_curr.getItems().clear();
 
-			rs = currAuctions.getAuctionsIntervall(fromDatePicker_curr.getValue().toString(),
-					toDatePicker_curr.getValue().toString());
+			listButton_curr.setOnAction(a1 -> {
+				if(isDatesSelected(fromDatePicker_curr.getValue(), toDatePicker_curr.getValue())){
+				data.clear();
+				tableView_curr.getColumns().clear();
+				tableView_curr.getItems().clear();
 
-			try {
-				while (rs.next()) {
+				data.addAll(currAuctions.getAuctionsIntervall(fromDatePicker_curr.getValue().toString(),
+						toDatePicker_curr.getValue().toString()));
 
-					data.add(new Auktion(rs.getString("produkt"), rs.getString("namn"), rs.getFloat("provision"),
-							rs.getString("sluttid")));
+				
+
+				tableView_curr.setItems(data);
+				tableView_curr.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol);
+
+
 				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
+			});
+
 
 			tableView_curr.setItems(data);
 			tableView_curr.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol);
-
-			try {
-				rs.beforeFirst();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			}
 
 		});
