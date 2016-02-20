@@ -3,6 +3,7 @@ package controllers;
 import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -13,11 +14,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.ListCurrAuctions;
 
@@ -79,7 +82,7 @@ public class AuctionC implements Initializable {
 		});
 
 		listButton_curr.setOnAction(a -> {
-
+			if(isDatesSelected(fromDatePicker_curr.getValue(), toDatePicker_curr.getValue())){
 			data.clear();
 			tableView_curr.getColumns().clear();
 			tableView_curr.getItems().clear();
@@ -107,10 +110,12 @@ public class AuctionC implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			}
 
 		});
 
 		listButton_bid.setOnAction(e -> {
+			if(auctionCombobox.getSelectionModel().getSelectedItem()!=null){
 			budData.clear();
 			tableView_curr.getColumns().clear();
 			tableView_curr.getItems().clear();
@@ -118,10 +123,32 @@ public class AuctionC implements Initializable {
 			budData = currAuctions.setPreparedStm(auctionCombobox.getValue().getAuktionsnummer());
 
 			tableView_curr.setItems(budData);
-			tableView_curr.getColumns().addAll(firstBidCol, secondBidCol, thirdBidCol);
+			tableView_curr.getColumns().addAll(firstBidCol, secondBidCol, thirdBidCol);}
+			else{
+				warningMessage("Välj en auktion för att lista bud");
+			}
 
 		});
 
+	}
+
+	private boolean isDatesSelected(LocalDate fromDate, LocalDate toDate) {
+
+		if (fromDate == null) {
+			warningMessage("Var god välj ett fråndatum");
+			return false;
+		} else if (toDate == null) {
+			warningMessage("Var god välj ett tilldatum");
+			return false;
+		}
+
+		return true;
+	}
+
+	private void warningMessage(String s) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText(s);
+		alert.showAndWait();
 	}
 
 }

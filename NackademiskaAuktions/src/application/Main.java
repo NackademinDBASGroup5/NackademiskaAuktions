@@ -19,11 +19,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 
 
@@ -82,7 +84,7 @@ public class Main extends Application {
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
 		dialog.setTitle("Login");
 		dialog.setHeaderText("");
-
+		
 		ButtonType loginButtonType = new ButtonType("Login", ButtonData.OK_DONE);
 		dialog.getDialogPane().getButtonTypes().addAll(loginButtonType);
 
@@ -130,8 +132,9 @@ public class Main extends Application {
 		    
 			}
 			else
-				System.exit(0);
-			//	login();
+				warningMessage("Felaktigt användarnamn/lösenord.");
+				//System.exit(0);
+			login();
 		return false;
 	}
 	
@@ -153,5 +156,9 @@ public class Main extends Application {
 		return true;
 	}
 	
-	
+	private void warningMessage(String s) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText(s);
+		alert.showAndWait();
+	}
 }

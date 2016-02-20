@@ -61,6 +61,7 @@ public class ReportC implements Initializable {
 			Main.mainStage.setScene(Main.mainScene);
 		});
 		customerReportButton.setOnAction(e->{
+			
 			tableView.getColumns().clear();
 			tableView.getItems().clear();
 			Platform.runLater(()->{
@@ -87,5 +88,7 @@ public class ReportC implements Initializable {
 		});
 		
 	}
+	
+	
 
 }
