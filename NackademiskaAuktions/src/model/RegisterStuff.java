@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
@@ -19,6 +21,7 @@ public class RegisterStuff {
 	Connection connect = null;
 	PreparedStatement pstm = null;
 	ResultSet rset = null;
+	private Statement stm = null;
 	
 	public RegisterStuff(){
 
@@ -145,6 +148,23 @@ public class RegisterStuff {
 			e.printStackTrace();
 		}
 	return false;
+	}
+	public ArrayList<Leverantor> getLeverantorer() {
+		try {
+			ArrayList<Leverantor> levList = new ArrayList<Leverantor>();
+			stm = connect.createStatement();
+			rset = stm.executeQuery("Select * from Leverantör");
+
+			while (rset.next()) {
+				levList.add(new Leverantor(rset.getString(1), rset.getString(2), rset.getFloat(3)));
+			}
+			return levList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
 	}
 	
 

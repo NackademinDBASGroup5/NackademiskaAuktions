@@ -96,8 +96,7 @@ public class RegisterC implements Initializable {
 			
 			
 		});
-		RegisterAuktion ra = new RegisterAuktion(); // detta är temp, ska läggas ihop med annan logik
-		ObservableList<Leverantor> levOptions = FXCollections.observableArrayList(ra.getLeverantorer());
+		ObservableList<Leverantor> levOptions = FXCollections.observableArrayList(rKund.getLeverantorer());
 		supplierCombo.setItems(levOptions);
 		registerButton_product.setOnAction(e->{
 			if(isFilledProduct(supplierCombo.getSelectionModel().getSelectedItem(), productNameField.getText(), productDescriptArea.getText() )){
