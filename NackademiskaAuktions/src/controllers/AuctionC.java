@@ -33,6 +33,7 @@ public class AuctionC implements Initializable {
 	@FXML
 	ComboBox<AuktionsData> auctionCombobox;
 
+	@SuppressWarnings("rawtypes")
 	@FXML
 	TableView tableView_curr;
 
@@ -41,6 +42,7 @@ public class AuctionC implements Initializable {
 	ObservableList<AuktionsData> data = FXCollections.observableArrayList();
 	ObservableList<BudHistorik> budData = FXCollections.observableArrayList();
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 

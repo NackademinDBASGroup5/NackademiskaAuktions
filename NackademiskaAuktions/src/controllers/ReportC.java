@@ -22,9 +22,11 @@ public class ReportC implements Initializable {
 	@FXML 
 	Button customerReportButton, provisionPerMonthButton, backButton;
 	
+	@SuppressWarnings("rawtypes")
 	@FXML
 	TableView tableView;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		

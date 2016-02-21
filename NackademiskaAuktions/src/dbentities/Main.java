@@ -40,7 +40,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		if (login());{
+		if (login(0));{
 		try {
 			
 			mainStage = primaryStage;
@@ -78,7 +78,10 @@ public class Main extends Application {
 		launch(args);
 	}
 	
-	private boolean login(){
+	private boolean login(int i){
+		i++;
+		if (i >3)
+			System.exit(0);
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
 		dialog.setTitle("Login");
 		dialog.setHeaderText("");
@@ -130,8 +133,8 @@ public class Main extends Application {
 		    
 			}
 			else
-			{	warningMessage("Felaktigt användarnamn/lösenord.");
-				login();
+			{	warningMessage("Felaktigt användarnamn/lösenord. du har " + (3-i) + " försök kvar");
+				login(i);
 				//System.exit(0);
 			}
 		return false;
