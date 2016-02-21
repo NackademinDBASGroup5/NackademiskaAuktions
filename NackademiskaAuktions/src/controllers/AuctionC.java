@@ -82,25 +82,8 @@ public class AuctionC implements Initializable {
 			tableView_curr.getColumns().clear();
 			tableView_curr.getItems().clear();
 
-			listButton_curr.setOnAction(a1 -> {
-				if(isDatesSelected(fromDatePicker_curr.getValue(), toDatePicker_curr.getValue())){
-				data.clear();
-				tableView_curr.getColumns().clear();
-				tableView_curr.getItems().clear();
-
 				data.addAll(currAuctions.getAuctionsIntervall(fromDatePicker_curr.getValue().toString(),
 						toDatePicker_curr.getValue().toString()));
-
-				
-
-				tableView_curr.setItems(data);
-				tableView_curr.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol);
-
-
-				}
-
-			});
-
 
 			tableView_curr.setItems(data);
 			tableView_curr.getColumns().addAll(firstCol, secondCol, thirdCol, forthCol);
