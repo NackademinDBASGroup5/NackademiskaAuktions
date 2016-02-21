@@ -25,6 +25,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 
@@ -44,6 +45,8 @@ public class Main extends Application {
 			
 			mainStage = primaryStage;
 			mainStage.setResizable(false);
+			mainStage.setTitle("Nackademiska auktionsnämnden");
+			mainStage.getIcons().add(new Image("/images/icon.png"));
 			mainScene = firstScene();
 			mainStage.setScene(mainScene);
 			mainStage.show();
