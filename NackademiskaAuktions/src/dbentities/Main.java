@@ -2,6 +2,7 @@
 package dbentities;
 	
 
+import java.awt.Button;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -14,6 +15,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Pair;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -68,7 +70,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 			return scene;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return null;
@@ -84,32 +86,38 @@ public class Main extends Application {
 			System.exit(0);
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
 		dialog.setTitle("Login");
-		dialog.setHeaderText("");
+		dialog.setHeaderText("Logga in");
 		
-		ButtonType loginButtonType = new ButtonType("Login", ButtonData.OK_DONE);
-		dialog.getDialogPane().getButtonTypes().addAll(loginButtonType);
-
+		ButtonType loginButtonType = new ButtonType("Logga in", ButtonData.OK_DONE);
+		ButtonType exitButtonType = new ButtonType("Avsluta", ButtonData.YES);
+		dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, exitButtonType);
+		dialog.initStyle(StageStyle.UNDECORATED);
 		GridPane grid = new GridPane();
 		grid.setHgap(10);
 		grid.setVgap(10);
 		grid.setPadding(new Insets(20, 150, 10, 10));
 
 		TextField username = new TextField();
-		username.setPromptText("Username");
+		username.setPromptText("Användarnamn");
 		PasswordField password = new PasswordField();
-		password.setPromptText("Password");
+		password.setPromptText("Lösenord");
+		
 
-		grid.add(new Label("Username:"), 0, 0);
+		grid.add(new Label("Användarnamn:"), 0, 0);
 		grid.add(username, 1, 0);
-		grid.add(new Label("Password:"), 0, 1);
+		grid.add(new Label("Lösenord:"), 0, 1);
 		grid.add(password, 1, 1);
+		
 
 		Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
 		loginButton.setDisable(true);
 		username.textProperty().addListener((observable, oldValue, newValue) -> {
 		    loginButton.setDisable(newValue.trim().isEmpty());
 		});
-
+		Node exitButton = dialog.getDialogPane().lookupButton(exitButtonType);
+		exitButton.setOnMouseClicked(e->{
+			System.exit(0);
+		});
 		dialog.getDialogPane().setContent(grid);
 
 		Platform.runLater(() -> username.requestFocus());
@@ -119,9 +127,11 @@ public class Main extends Application {
 		    }
 		    return null;
 		});
-
+		
 		Optional<Pair<String, String>> result = dialog.showAndWait();
-
+		
+		
+		
 		result.ifPresent(usernamePassword -> {
 		
 				 Main.username = usernamePassword.getKey();
@@ -145,14 +155,14 @@ public class Main extends Application {
 		try {
 			connect = DriverManager.getConnection("jdbc:mysql://localhost/auktion", user, pass);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			return false;
 		}
 		try {
 			if (connect != null)
 			connect.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return true;
