@@ -1,4 +1,4 @@
-package application;
+package dbentities;
 
 public class Leverantor {
 

@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import application.AuktionsData;
-import application.BudHistorik;
-import application.Main;
+import dbentities.AuktionsData;
+import dbentities.BudHistorik;
+import dbentities.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

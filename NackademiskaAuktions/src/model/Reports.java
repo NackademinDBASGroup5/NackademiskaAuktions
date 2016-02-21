@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import application.KundHistorik;
-import application.Main;
-import application.Provision;
+import dbentities.KundHistorik;
+import dbentities.Main;
+import dbentities.Provision;
 
 public class Reports {
 	private Connection connect;

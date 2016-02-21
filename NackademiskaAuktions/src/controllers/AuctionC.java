@@ -5,9 +5,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import application.AuktionsData;
-import application.BudHistorik;
-import application.Main;
+import dbentities.AuktionsData;
+import dbentities.BudHistorik;
+import dbentities.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

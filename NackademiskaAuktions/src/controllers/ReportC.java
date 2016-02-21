@@ -3,12 +3,9 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.AuktionsData;
-import application.Historik;
-import application.Kund;
-import application.KundHistorik;
-import application.Main;
-import application.Provision;
+import dbentities.KundHistorik;
+import dbentities.Main;
+import dbentities.Provision;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

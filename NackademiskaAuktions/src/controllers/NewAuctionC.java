@@ -2,12 +2,11 @@ package controllers;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
-import application.Leverantor;
-import application.Main;
-import application.Produkt;
+import dbentities.Leverantor;
+import dbentities.Main;
+import dbentities.Produkt;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

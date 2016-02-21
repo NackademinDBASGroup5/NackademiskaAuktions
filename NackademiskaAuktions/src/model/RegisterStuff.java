@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
-import application.Kund;
-import application.Leverantor;
-import application.Main;
-import application.Produkt;
+import dbentities.Kund;
+import dbentities.Leverantor;
+import dbentities.Main;
+import dbentities.Produkt;
 
 
 public class RegisterStuff {

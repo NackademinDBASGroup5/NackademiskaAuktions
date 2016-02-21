@@ -1,5 +1,5 @@
 
-package application;
+package dbentities;
 	
 
 import java.io.IOException;

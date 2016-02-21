@@ -1,7 +1,7 @@
-package application;
+package dbentities;
 
-public class Kund {
-	
+public class KundHistorik {
+
 	private String personnummer;
 	private String fornamn;
 	private String efternamn;
@@ -10,9 +10,10 @@ public class Kund {
 	private String ort;
 	private String epost;
 	private String telefon;
+	private float ordervarde;
 	
-	public Kund(String personnummer, String fornamn, String efternamn, String gatuadress, String postnummer, String ort,
-			String epost, String telefon) {
+	public KundHistorik(String personnummer, String fornamn, String efternamn, String gatuadress, String postnummer, String ort,
+			String epost, String telefon, float ordervarde) {
 		super();
 		this.personnummer = personnummer;
 		this.fornamn = fornamn;
@@ -22,6 +23,7 @@ public class Kund {
 		this.ort = ort;
 		this.epost = epost;
 		this.telefon = telefon;
+		this.ordervarde = ordervarde;
 	}
 
 	public String getPersonnummer() {
@@ -88,13 +90,21 @@ public class Kund {
 		this.telefon = telefon;
 	}
 
+	public float getOrdervarde() {
+		return ordervarde;
+	}
+
+	public void setOrdervarde(float ordervarde) {
+		this.ordervarde = ordervarde;
+	}
+
 	@Override
 	public String toString() {
-		return "Kund [personnummer=" + personnummer + ", fornamn=" + fornamn + ", efternamn=" + efternamn
+		return "KundHistorik [personnummer=" + personnummer + ", fornamn=" + fornamn + ", efternamn=" + efternamn
 				+ ", gatuadress=" + gatuadress + ", postnummer=" + postnummer + ", ort=" + ort + ", epost=" + epost
-				+ ", telefon=" + telefon + "]";
+				+ ", telefon=" + telefon + ", ordervarde=" + ordervarde + "]";
 	}
 	
-	
 
+	
 }

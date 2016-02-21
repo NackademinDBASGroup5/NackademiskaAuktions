@@ -3,10 +3,10 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.Kund;
-import application.Leverantor;
-import application.Main;
-import application.Produkt;
+import dbentities.Kund;
+import dbentities.Leverantor;
+import dbentities.Main;
+import dbentities.Produkt;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -16,11 +16,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Control;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import model.RegisterAuktion;
 import model.RegisterStuff;
 
 public class RegisterC implements Initializable {

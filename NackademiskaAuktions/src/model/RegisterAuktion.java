@@ -14,9 +14,9 @@ import java.util.Date;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
-import application.Leverantor;
-import application.Main;
-import application.Produkt;
+import dbentities.Leverantor;
+import dbentities.Main;
+import dbentities.Produkt;
 import javafx.scene.image.Image;
 
 public class RegisterAuktion {
